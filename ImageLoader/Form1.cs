@@ -538,32 +538,37 @@ namespace TrabalhoFinal
         // OPERAÇÃO AND
         private void btnAND_Click(object sender, EventArgs e)
         {
+            // Verifica se as imagens foram carregadas
             if (img1 == null || img2 == null)
             {
                 MessageBox.Show("Carregue ambas as imagens!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (!IsBinaryImage(img1) || !IsBinaryImage(img2))
+            // Verifica se as imagens têm o mesmo tamanho
+            if (img1.Width != img2.Width || img1.Height != img2.Height)
             {
-                MessageBox.Show("Ambas as imagens devem ser binárias (preto e branco)!", "Erro",
-                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("As imagens devem ter o mesmo tamanho para calcular o AND lógico.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            int width = Math.Min(img1.Width, img2.Width);
-            int height = Math.Min(img1.Height, img2.Height);
-            Bitmap result = new Bitmap(width, height);
+            // Cria uma nova imagem para o resultado
+            Bitmap result = new Bitmap(img1.Width, img1.Height);
 
-            for (int x = 0; x < width; x++)
+            // Calcula o AND lógico
+            for (int x = 0; x < img1.Width; x++)
             {
-                for (int y = 0; y < height; y++)
+                for (int y = 0; y < img1.Height; y++)
                 {
                     Color p1 = img1.GetPixel(x, y);
                     Color p2 = img2.GetPixel(x, y);
 
+                    // Aplica a operação AND em todos os canais de cor
                     byte andR = (byte)(p1.R & p2.R);
-                    result.SetPixel(x, y, Color.FromArgb(255, andR, andR, andR));
+                    byte andG = (byte)(p1.G & p2.G);
+                    byte andB = (byte)(p1.B & p2.B);
+
+                    result.SetPixel(x, y, Color.FromArgb(255, andR, andG, andB));
                 }
             }
             pbImgResultado.Image = result;
@@ -572,26 +577,37 @@ namespace TrabalhoFinal
         // OPERAÇÃO OR
         private void btnOR_Click(object sender, EventArgs e)
         {
-            // Mesma validação do AND
-            if (img1 == null || img2 == null || !IsBinaryImage(img1) || !IsBinaryImage(img2))
+            // Verifica se as imagens foram carregadas
+            if (img1 == null || img2 == null)
             {
-                ShowBinaryError();
+                MessageBox.Show("Carregue ambas as imagens!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            int width = Math.Min(img1.Width, img2.Width);
-            int height = Math.Min(img1.Height, img2.Height);
-            Bitmap result = new Bitmap(width, height);
-
-            for (int x = 0; x < width; x++)
+            // Verifica se as imagens têm o mesmo tamanho
+            if (img1.Width != img2.Width || img1.Height != img2.Height)
             {
-                for (int y = 0; y < height; y++)
+                MessageBox.Show("As imagens devem ter o mesmo tamanho para calcular o OR lógico.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Cria uma nova imagem para o resultado
+            Bitmap result = new Bitmap(img1.Width, img1.Height);
+
+            // Calcula o OR lógico
+            for (int x = 0; x < img1.Width; x++)
+            {
+                for (int y = 0; y < img1.Height; y++)
                 {
                     Color p1 = img1.GetPixel(x, y);
                     Color p2 = img2.GetPixel(x, y);
 
+                    // Aplica a operação OR em todos os canais de cor
                     byte orR = (byte)(p1.R | p2.R);
-                    result.SetPixel(x, y, Color.FromArgb(255, orR, orR, orR));
+                    byte orG = (byte)(p1.G | p2.G);
+                    byte orB = (byte)(p1.B | p2.B);
+
+                    result.SetPixel(x, y, Color.FromArgb(255, orR, orG, orB));
                 }
             }
             pbImgResultado.Image = result;
@@ -600,25 +616,37 @@ namespace TrabalhoFinal
         // OPERAÇÃO XOR
         private void btnXOR_Click(object sender, EventArgs e)
         {
-            if (img1 == null || img2 == null || !IsBinaryImage(img1) || !IsBinaryImage(img2))
+            // Verifica se as imagens foram carregadas
+            if (img1 == null || img2 == null)
             {
-                ShowBinaryError();
+                MessageBox.Show("Carregue ambas as imagens!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            int width = Math.Min(img1.Width, img2.Width);
-            int height = Math.Min(img1.Height, img2.Height);
-            Bitmap result = new Bitmap(width, height);
-
-            for (int x = 0; x < width; x++)
+            // Verifica se as imagens têm o mesmo tamanho
+            if (img1.Width != img2.Width || img1.Height != img2.Height)
             {
-                for (int y = 0; y < height; y++)
+                MessageBox.Show("As imagens devem ter o mesmo tamanho para calcular o XOR lógico.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Cria uma nova imagem para o resultado
+            Bitmap result = new Bitmap(img1.Width, img1.Height);
+
+            // Calcula o XOR lógico
+            for (int x = 0; x < img1.Width; x++)
+            {
+                for (int y = 0; y < img1.Height; y++)
                 {
                     Color p1 = img1.GetPixel(x, y);
                     Color p2 = img2.GetPixel(x, y);
 
+                    // Aplica a operação XOR em todos os canais de cor
                     byte xorR = (byte)(p1.R ^ p2.R);
-                    result.SetPixel(x, y, Color.FromArgb(255, xorR, xorR, xorR));
+                    byte xorG = (byte)(p1.G ^ p2.G);
+                    byte xorB = (byte)(p1.B ^ p2.B);
+
+                    result.SetPixel(x, y, Color.FromArgb(255, xorR, xorG, xorB));
                 }
             }
             pbImgResultado.Image = result;
@@ -627,21 +655,29 @@ namespace TrabalhoFinal
         // OPERAÇÃO NOT (Inversão)
         private void btnNOT_Click(object sender, EventArgs e)
         {
-            if (img1 == null || !IsBinaryImage(img1))
+            // Verifica se a imagem foi carregada
+            if (img1 == null)
             {
-                MessageBox.Show("Imagem 1 deve ser binária!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Carregue a imagem!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
+            // Cria uma nova imagem para o resultado
             Bitmap result = new Bitmap(img1.Width, img1.Height);
 
+            // Calcula o NOT lógico
             for (int x = 0; x < img1.Width; x++)
             {
                 for (int y = 0; y < img1.Height; y++)
                 {
                     Color pixel = img1.GetPixel(x, y);
-                    byte notR = (byte)(~pixel.R);
-                    result.SetPixel(x, y, Color.FromArgb(255, notR, notR, notR));
+
+                    // Aplica a operação NOT em todos os canais de cor
+                    byte notR = (byte)(255 - pixel.R);
+                    byte notG = (byte)(255 - pixel.G);
+                    byte notB = (byte)(255 - pixel.B);
+
+                    result.SetPixel(x, y, Color.FromArgb(255, notR, notG, notB));
                 }
             }
             pbImgResultado.Image = result;
