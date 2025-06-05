@@ -364,6 +364,8 @@ namespace TrabalhoFinal
             isGrayScale = true; // Atualiza o flag para binário (tons de cinza)
         }
 
+        
+
 
         private void SalvarImagem()
         {
@@ -683,6 +685,105 @@ namespace TrabalhoFinal
             pbImgResultado.Image = result;
         }
 
+        private void btnHistograma_Click(object sender, EventArgs e)
+        {
+
+            if (img1 != null)
+            {
+                int largura = img1.Width;
+                int altura = img1.Height;
+                int totalPixels = largura * altura;
+
+                // Passo 1: Criar o Histograma da Imagem Original
+                int[] histogramaOriginal = new int[256];
+                for (int y = 0; y < altura; y++)
+                {
+                    for (int x = 0; x < largura; x++)
+                    {
+                        Color pixel = img1.GetPixel(x, y);
+                        int intensidade = pixel.R;
+                        histogramaOriginal[intensidade]++;
+                    }
+                }
+
+                // Exibir o histograma da imagem original no chart1
+                chart1.Series.Clear();  // Limpa séries anteriores
+                var serieOriginal = new System.Windows.Forms.DataVisualization.Charting.Series
+                {
+                    Name = "Histograma Original",
+                    Color = Color.Blue,
+                    ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column
+                };
+                chart1.Series.Add(serieOriginal);
+
+                for (int i = 0; i < histogramaOriginal.Length; i++)
+                {
+                    serieOriginal.Points.AddXY(i, histogramaOriginal[i]);
+                }
+
+                chart1.Invalidate();  // Atualiza o gráfico
+
+                // Passo 2: Calcular o CFD (Cumulative Frequency Distribution)
+                int[] cfd = new int[256];
+                cfd[0] = histogramaOriginal[0];
+                for (int i = 1; i < 256; i++)
+                {
+                    cfd[i] = cfd[i - 1] + histogramaOriginal[i];
+                }
+
+                // Encontrar o menor valor de CFD maior que 0
+                int cfdMin = int.MaxValue;
+                for (int i = 0; i < 256; i++)
+                {
+                    if (cfd[i] > 0)
+                    {
+                        cfdMin = Math.Min(cfdMin, cfd[i]);
+                    }
+                }
+
+                // Passo 3: Ajustar os valores dos pixels (Equalização de Histograma)
+                Bitmap imgEqualizada = new Bitmap(largura, altura);
+                int[] histogramaEqualizado = new int[256];  // Para armazenar o novo histograma
+                for (int y = 0; y < altura; y++)
+                {
+                    for (int x = 0; x < largura; x++)
+                    {
+                        Color pixel = img1.GetPixel(x, y);
+                        int intensidade = pixel.R;
+                        int novoValor = (int)(((cfd[intensidade] - cfdMin) / (float)(totalPixels - cfdMin)) * 255);
+                        novoValor = Math.Max(0, Math.Min(255, novoValor));
+                        Color novoPixel = Color.FromArgb(novoValor, novoValor, novoValor);
+                        imgEqualizada.SetPixel(x, y, novoPixel);
+                        histogramaEqualizado[novoValor]++;
+                    }
+                }
+
+                // Atualizar o PictureBox com a imagem equalizada (se aplicável)
+                pbImgResultado.Image = imgEqualizada;
+
+                // Exibir o histograma da imagem equalizada no chart2
+                chart2.Series.Clear();  // Limpa séries anteriores
+                var serieEqualizada = new System.Windows.Forms.DataVisualization.Charting.Series
+                {
+                    Name = "Histograma Equalizado",
+                    Color = Color.Red,
+                    ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column
+                };
+                chart2.Series.Add(serieEqualizada);
+
+                for (int i = 0; i < histogramaEqualizado.Length; i++)
+                {
+                    serieEqualizada.Points.AddXY(i, histogramaEqualizado[i]);
+                }
+
+                chart2.Invalidate();  // Atualiza o gráfico
+            }
+        }
+
+
+
+        
+
         // Método auxiliar para exibir erros
         private void ShowBinaryError()
         {
@@ -715,6 +816,45 @@ namespace TrabalhoFinal
             ConverterParaBinario();
         }
 
-        
+      
+
+        private void btnLimiarizacao_Click(object sender, EventArgs e)
+        {
+            if (img1 == null)
+            {
+                MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            Bitmap imgBinaria = new Bitmap(img1.Width, img1.Height);
+            const byte limiar = 128; // Limiar fixo (0-255)
+            if (isGrayScale && vImg1Gray != null)
+            {
+                // Caso 1: Imagem já está em escala de cinza (usa a matriz de bytes)
+                for (int x = 0; x < img1.Width; x++)
+                {
+                    for (int y = 0; y < img1.Height; y++)
+                    {
+                        byte intensidade = vImg1Gray[x, y];
+                        imgBinaria.SetPixel(x, y, intensidade >= limiar ? Color.White : Color.Black);
+                    }
+                }
+            }
+            else
+            {
+                // Caso 2: Imagem RGB (converte para byte e aplica limiar)
+                for (int x = 0; x < img1.Width; x++)
+                {
+                    for (int y = 0; y < img1.Height; y++)
+                    {
+                        Color pixel = img1.GetPixel(x, y);
+                        // Converte RGB para byte (média simples)
+                        byte intensidade = (byte)((pixel.R + pixel.G + pixel.B) / 3);
+                        imgBinaria.SetPixel(x, y, intensidade >= limiar ? Color.White : Color.Black);
+                    }
+                }
+            }
+            pbImgResultado.Image = imgBinaria;
+            isGrayScale = true; // Atualiza o flag para binário (tons de cinza)
+        }
     }
  }
