@@ -856,5 +856,139 @@ namespace TrabalhoFinal
             pbImgResultado.Image = imgBinaria;
             isGrayScale = true; // Atualiza o flag para binário (tons de cinza)
         }
+
+        private void btnMaximo_Click(object sender, EventArgs e)
+        {
+            if (img1 != null)
+            {
+                int largura = img1.Width;
+                int altura = img1.Height;
+
+                // Criar uma nova imagem para armazenar o resultado
+                Bitmap imgFiltrada = new Bitmap(largura, altura);
+
+                // Varrer a imagem pixel por pixel
+                for (int y = 1; y < altura - 1; y++) // Evita as bordas
+                {
+                    for (int x = 1; x < largura - 1; x++) // Evita as bordas
+                    {
+                        // List para armazenar os valores de intensidade dos pixels vizinhos
+                        List<int> vizinhos = new List<int>();
+
+                        // Varre a matriz 3x3 ao redor do pixel (x, y)
+                        for (int j = -1; j <= 1; j++)
+                        {
+                            for (int i = -1; i <= 1; i++)
+                            {
+                                // Pega o pixel vizinho
+                                Color pixel = img1.GetPixel(x + i, y + j);
+                                // Adiciona a intensidade do pixel (R, G ou B, pois a imagem é em escala de cinza)
+                                vizinhos.Add(pixel.R); // Usando R, G e B são iguais para imagens em escala de cinza
+                            }
+                        }
+
+                        // Encontrar o menor valor de intensidade na vizinhança 3x3
+                        int menorValor = vizinhos.Min();
+
+                        // Definir o novo valor do pixel na imagem filtrada
+                        imgFiltrada.SetPixel(x, y, Color.FromArgb(menorValor, menorValor, menorValor));
+                    }
+                }
+
+                // Atualiza a PictureBox com a imagem filtrada
+                pbImgResultado.Image = imgFiltrada;
+
+                // Se quiser exibir o histograma da imagem filtrada no chart2, pode-se seguir o mesmo processo usado anteriormente.
+            }
+        }
+
+        private void btnMaximo_Click_1(object sender, EventArgs e)
+        {
+            if (img1 != null)
+            {
+                int largura = img1.Width;
+                int altura = img1.Height;
+
+                // Criar uma nova imagem para armazenar o resultado
+                Bitmap imgFiltrada = new Bitmap(largura, altura);
+
+                // Varrer a imagem pixel por pixel
+                for (int y = 1; y < altura - 1; y++) // Evita as bordas
+                {
+                    for (int x = 1; x < largura - 1; x++) // Evita as bordas
+                    {
+                        // List para armazenar os valores de intensidade dos pixels vizinhos
+                        List<int> vizinhos = new List<int>();
+
+                        // Varre a matriz 3x3 ao redor do pixel (x, y)
+                        for (int j = -1; j <= 1; j++)
+                        {
+                            for (int i = -1; i <= 1; i++)
+                            {
+                                // Pega o pixel vizinho
+                                Color pixel = img1.GetPixel(x + i, y + j);
+                                // Adiciona a intensidade do pixel (R, G ou B, pois a imagem é em escala de cinza)
+                                vizinhos.Add(pixel.R); // Usando R, G e B são iguais para imagens em escala de cinza
+                            }
+                        }
+
+                        // Encontrar o menor valor de intensidade na vizinhança 3x3
+                        int menorValor = vizinhos.Max();
+
+                        // Definir o novo valor do pixel na imagem filtrada
+                        imgFiltrada.SetPixel(x, y, Color.FromArgb(menorValor, menorValor, menorValor));
+                    }
+                }
+
+                // Atualiza a PictureBox com a imagem filtrada
+                pbImgResultado.Image = imgFiltrada;
+
+                // Se quiser exibir o histograma da imagem filtrada no chart2, pode-se seguir o mesmo processo usado anteriormente.
+            }
+        }
+
+        private void btnMean_Click(object sender, EventArgs e)
+        {
+            if (img1 != null)
+            {
+                int largura = img1.Width;
+                int altura = img1.Height;
+
+                // Criar uma nova imagem para armazenar o resultado
+                Bitmap imgFiltrada = new Bitmap(largura, altura);
+
+                // Varrer a imagem pixel por pixel, exceto as bordas
+                for (int y = 1; y < altura - 1; y++)
+                {
+                    for (int x = 1; x < largura - 1; x++)
+                    {
+                        int soma = 0; // Variável para armazenar a soma dos valores dos 9 pixels
+
+                        // Varre a matriz 3x3 ao redor do pixel (x, y)
+                        for (int j = -1; j <= 1; j++)
+                        {
+                            for (int i = -1; i <= 1; i++)
+                            {
+                                // Pega o pixel vizinho
+                                Color pixel = img1.GetPixel(x + i, y + j);
+                                // Adiciona a intensidade do pixel (R, G ou B, pois a imagem é em escala de cinza)
+                                soma += pixel.R; // Usando R, G e B são iguais para imagens em escala de cinza
+                            }
+                        }
+
+                        // Calcula a média dos 9 valores
+                        int media = soma / 9;
+
+                        // Define o novo valor do pixel na imagem filtrada
+                        imgFiltrada.SetPixel(x, y, Color.FromArgb(media, media, media));
+                    }
+                }
+
+                // Atualiza a PictureBox com a imagem filtrada
+                pbImgResultado.Image = imgFiltrada;
+
+                // Se quiser exibir o histograma da imagem filtrada no chart2, pode-se seguir o mesmo processo usado anteriormente.
+            }
+        }
     }
  }
