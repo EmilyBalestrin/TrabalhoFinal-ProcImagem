@@ -999,10 +999,8 @@ namespace TrabalhoFinal
                     int largura = img1.Width;
                     int altura = img1.Height;
 
-                    // Criar uma nova imagem para armazenar o resultado
                     Bitmap imgFiltrada = new Bitmap(largura, altura);
 
-                    // Varrer a imagem pixel por pixel, exceto as bordas
                     for (int y = 1; y < altura - 1; y++)
                     {
                         for (int x = 1; x < largura - 1; x++)
@@ -1016,7 +1014,6 @@ namespace TrabalhoFinal
                             {
                                 for (int i = -1; i <= 1; i++)
                                 {
-                                    // Pega o pixel vizinho
                                     Color pixel = img1.GetPixel(x + i, y + j);
                                     // Armazena a intensidade do pixel (R, G ou B, pois a imagem é em escala de cinza)
                                     valores[contador] = pixel.R; // Usando R, G e B são iguais para imagens em escala de cinza
@@ -1024,27 +1021,156 @@ namespace TrabalhoFinal
                                 }
                             }
 
-                            // Ordena o array em ordem crescente
                             Array.Sort(valores);
 
-                            // O valor mediano é o 5º valor (índice 4) do array ordenado
                             int valorMediano = valores[4];
 
-                            // Define o novo valor do pixel na imagem filtrada
                             imgFiltrada.SetPixel(x, y, Color.FromArgb(valorMediano, valorMediano, valorMediano));
                         }
                     }
 
-                    // Atualiza a PictureBox com a imagem filtrada
                     pbImgResultado.Image = imgFiltrada;
 
-                    // Se quiser exibir o histograma da imagem filtrada no chart2, pode-se seguir o mesmo processo usado anteriormente.
                 }
                 else
                 {
                     MessageBox.Show("Por favor, carregue uma imagem antes de aplicar o filtro.");
                 }
             }
+        }
+
+        private void btnOrdem_Click(object sender, EventArgs e)
+        {
+            if (img1 != null)
+            {
+                int largura = img1.Width;
+                int altura = img1.Height;
+
+                // Verifica se o valor da TextBox está entre 0 e 8
+                int posicao;
+                if (!int.TryParse(txtOrdem.Text, out posicao) || posicao < 0 || posicao > 8)
+                {
+                    MessageBox.Show("Por favor, insira um valor entre 0 e 8.");
+                    return;
+                }
+
+                // Criar uma nova imagem para armazenar o resultado
+                Bitmap imgFiltrada = new Bitmap(largura, altura);
+
+                // Varrer a imagem pixel por pixel, exceto as bordas
+                for (int y = 1; y < altura - 1; y++)
+                {
+                    for (int x = 1; x < largura - 1; x++)
+                    {
+                        // Array para armazenar os valores dos 9 pixels vizinhos
+                        int[] valores = new int[9];
+                        int contador = 0;
+
+                        // Varre a matriz 3x3 ao redor do pixel (x, y)
+                        for (int j = -1; j <= 1; j++)
+                        {
+                            for (int i = -1; i <= 1; i++)
+                            {
+                                // Pega o pixel vizinho
+                                Color pixel = img1.GetPixel(x + i, y + j);
+                                // Armazena a intensidade do pixel (R, G ou B, pois a imagem é em escala de cinza)
+                                valores[contador] = pixel.R; // Usando R, G e B são iguais para imagens em escala de cinza
+                                contador++;
+                            }
+                        }
+
+                        // Ordena o array em ordem crescente
+                        Array.Sort(valores);
+
+                        // O valor selecionado é o da posição fornecida pela TextBox
+                        int valorSelecionado = valores[posicao];
+
+                        // Define o novo valor do pixel na imagem filtrada
+                        imgFiltrada.SetPixel(x, y, Color.FromArgb(valorSelecionado, valorSelecionado, valorSelecionado));
+                    }
+                }
+
+                // Atualiza a PictureBox com a imagem filtrada
+                pbImgResultado.Image = imgFiltrada;
+            }
+            else
+            {
+                MessageBox.Show("Por favor, carregue uma imagem antes de aplicar o filtro.");
+            }
+        }
+
+        private void btnSuavizacaoConservativa_Click(object sender, EventArgs e)
+        {
+            if (img1 != null)
+            {
+                int largura = img1.Width;
+                int altura = img1.Height;
+
+                // Criar uma nova imagem para armazenar o resultado
+                Bitmap imgFiltrada = new Bitmap(largura, altura);
+
+                // Varrer a imagem pixel por pixel, exceto as bordas
+                for (int y = 1; y < altura - 1; y++)
+                {
+                    for (int x = 1; x < largura - 1; x++)
+                    {
+                        // Array para armazenar os valores dos 8 pixels vizinhos
+                        int[] valoresVizinhos = new int[8];
+                        int contador = 0;
+
+                        // Pega o valor do pixel central
+                        Color pixelCentral = img1.GetPixel(x, y);
+                        int valorCentral = pixelCentral.R; // Usando R, G e B são iguais para imagens em escala de cinza
+
+                        // Varre a matriz 3x3 ao redor do pixel (x, y), ignorando o pixel central
+                        for (int j = -1; j <= 1; j++)
+                        {
+                            for (int i = -1; i <= 1; i++)
+                            {
+                                // Ignorar o pixel central
+                                if (i == 0 && j == 0)
+                                    continue;
+
+                                // Pega o pixel vizinho
+                                Color pixelVizinho = img1.GetPixel(x + i, y + j);
+                                // Armazena a intensidade do pixel vizinho
+                                valoresVizinhos[contador] = pixelVizinho.R;
+                                contador++;
+                            }
+                        }
+
+                        // Encontra o valor máximo e o mínimo dos 8 vizinhos
+                        int valorMaximo = valoresVizinhos.Max();
+                        int valorMinimo = valoresVizinhos.Min();
+
+                        // Define o novo valor do pixel central com base no máximo e mínimo
+                        int novoValor;
+                        if (valorCentral > valorMaximo)
+                        {
+                            novoValor = valorMaximo;
+                        }
+                        else if (valorCentral < valorMinimo)
+                        {
+                            novoValor = valorMinimo;
+                        }
+                        else
+                        {
+                            novoValor = valorCentral; // Mantém o valor original se estiver dentro dos limites
+                        }
+
+                        // Define o novo valor do pixel na imagem filtrada
+                        imgFiltrada.SetPixel(x, y, Color.FromArgb(novoValor, novoValor, novoValor));
+                    }
+                }
+
+                // Atualiza a PictureBox com a imagem filtrada
+                pbImgResultado.Image = imgFiltrada;
+            }
+            else
+            {
+                MessageBox.Show("Por favor, carregue uma imagem antes de aplicar o filtro.");
+            }
+        
         }
     }
  }

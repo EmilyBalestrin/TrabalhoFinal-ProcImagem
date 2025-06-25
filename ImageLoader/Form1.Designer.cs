@@ -77,6 +77,8 @@
             this.btnMean = new System.Windows.Forms.Button();
             this.btnMaximo = new System.Windows.Forms.Button();
             this.btnMinimo = new System.Windows.Forms.Button();
+            this.numUpDownOrdem = new System.Windows.Forms.NumericUpDown();
+            this.txtOrdem = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbImg1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImgResultado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numBrilho)).BeginInit();
@@ -88,6 +90,7 @@
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numUpDownOrdem)).BeginInit();
             this.SuspendLayout();
             // 
             // btnImg1
@@ -472,6 +475,7 @@
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.groupBox3.Controls.Add(this.comboBox1);
+            this.groupBox3.Controls.Add(this.txtOrdem);
             this.groupBox3.Controls.Add(this.btnGaussiano);
             this.groupBox3.Controls.Add(this.btnSuavizacaoConservativa);
             this.groupBox3.Controls.Add(this.btnOrdem);
@@ -515,6 +519,7 @@
             this.btnSuavizacaoConservativa.TabIndex = 5;
             this.btnSuavizacaoConservativa.Text = "Suavização Conservativa";
             this.btnSuavizacaoConservativa.UseVisualStyleBackColor = true;
+            this.btnSuavizacaoConservativa.Click += new System.EventHandler(this.btnSuavizacaoConservativa_Click);
             // 
             // btnOrdem
             // 
@@ -524,6 +529,7 @@
             this.btnOrdem.TabIndex = 4;
             this.btnOrdem.Text = "Ordem";
             this.btnOrdem.UseVisualStyleBackColor = true;
+            this.btnOrdem.Click += new System.EventHandler(this.btnOrdem_Click);
             // 
             // btnMediana
             // 
@@ -565,12 +571,32 @@
             this.btnMinimo.UseVisualStyleBackColor = true;
             this.btnMinimo.Click += new System.EventHandler(this.btnMaximo_Click);
             // 
+            // numUpDownOrdem
+            // 
+            this.numUpDownOrdem.Location = new System.Drawing.Point(433, 491);
+            this.numUpDownOrdem.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.numUpDownOrdem.Name = "numUpDownOrdem";
+            this.numUpDownOrdem.Size = new System.Drawing.Size(57, 22);
+            this.numUpDownOrdem.TabIndex = 34;
+            // 
+            // txtOrdem
+            // 
+            this.txtOrdem.Location = new System.Drawing.Point(35, 156);
+            this.txtOrdem.Name = "txtOrdem";
+            this.txtOrdem.Size = new System.Drawing.Size(58, 22);
+            this.txtOrdem.TabIndex = 34;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1924, 1131);
+            this.Controls.Add(this.numUpDownOrdem);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -610,6 +636,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numUpDownOrdem)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -659,5 +687,7 @@
         private System.Windows.Forms.Button btnMaximo;
         private System.Windows.Forms.Button btnMinimo;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.NumericUpDown numUpDownOrdem;
+        private System.Windows.Forms.TextBox txtOrdem;
     }
 }
