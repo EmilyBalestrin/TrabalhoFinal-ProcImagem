@@ -990,5 +990,61 @@ namespace TrabalhoFinal
                 // Se quiser exibir o histograma da imagem filtrada no chart2, pode-se seguir o mesmo processo usado anteriormente.
             }
         }
+
+        private void btnMediana_Click(object sender, EventArgs e)
+        {
+            {
+                if (img1 != null)
+                {
+                    int largura = img1.Width;
+                    int altura = img1.Height;
+
+                    // Criar uma nova imagem para armazenar o resultado
+                    Bitmap imgFiltrada = new Bitmap(largura, altura);
+
+                    // Varrer a imagem pixel por pixel, exceto as bordas
+                    for (int y = 1; y < altura - 1; y++)
+                    {
+                        for (int x = 1; x < largura - 1; x++)
+                        {
+                            // Array para armazenar os valores dos 9 pixels vizinhos
+                            int[] valores = new int[9];
+                            int contador = 0;
+
+                            // Varre a matriz 3x3 ao redor do pixel (x, y)
+                            for (int j = -1; j <= 1; j++)
+                            {
+                                for (int i = -1; i <= 1; i++)
+                                {
+                                    // Pega o pixel vizinho
+                                    Color pixel = img1.GetPixel(x + i, y + j);
+                                    // Armazena a intensidade do pixel (R, G ou B, pois a imagem é em escala de cinza)
+                                    valores[contador] = pixel.R; // Usando R, G e B são iguais para imagens em escala de cinza
+                                    contador++;
+                                }
+                            }
+
+                            // Ordena o array em ordem crescente
+                            Array.Sort(valores);
+
+                            // O valor mediano é o 5º valor (índice 4) do array ordenado
+                            int valorMediano = valores[4];
+
+                            // Define o novo valor do pixel na imagem filtrada
+                            imgFiltrada.SetPixel(x, y, Color.FromArgb(valorMediano, valorMediano, valorMediano));
+                        }
+                    }
+
+                    // Atualiza a PictureBox com a imagem filtrada
+                    pbImgResultado.Image = imgFiltrada;
+
+                    // Se quiser exibir o histograma da imagem filtrada no chart2, pode-se seguir o mesmo processo usado anteriormente.
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, carregue uma imagem antes de aplicar o filtro.");
+                }
+            }
+        }
     }
  }
