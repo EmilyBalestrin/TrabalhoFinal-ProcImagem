@@ -66,10 +66,12 @@
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnHistograma = new System.Windows.Forms.Button();
             this.btnLimiarizacao = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.gbOperacoesAritmeticas = new System.Windows.Forms.GroupBox();
+            this.gbOperacoesLogicas = new System.Windows.Forms.GroupBox();
+            this.gbFiltrosPassaBaixa = new System.Windows.Forms.GroupBox();
+            this.txtGaussiano = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txtOrdem = new System.Windows.Forms.TextBox();
             this.btnGaussiano = new System.Windows.Forms.Button();
             this.btnSuavizacaoConservativa = new System.Windows.Forms.Button();
             this.btnOrdem = new System.Windows.Forms.Button();
@@ -78,8 +80,16 @@
             this.btnMaximo = new System.Windows.Forms.Button();
             this.btnMinimo = new System.Windows.Forms.Button();
             this.numUpDownOrdem = new System.Windows.Forms.NumericUpDown();
-            this.txtOrdem = new System.Windows.Forms.TextBox();
-            this.txtGaussiano = new System.Windows.Forms.TextBox();
+            this.gbOperacoesMorfologicas = new System.Windows.Forms.GroupBox();
+            this.btnContorno = new System.Windows.Forms.Button();
+            this.btnDilatacao = new System.Windows.Forms.Button();
+            this.btnFechamento = new System.Windows.Forms.Button();
+            this.btnErosao = new System.Windows.Forms.Button();
+            this.btnAbertura = new System.Windows.Forms.Button();
+            this.gbFiltrosPassaAlta = new System.Windows.Forms.GroupBox();
+            this.btnLaplaciano = new System.Windows.Forms.Button();
+            this.btnSobel = new System.Windows.Forms.Button();
+            this.btnPrewitt = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbImg1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImgResultado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numBrilho)).BeginInit();
@@ -88,10 +98,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.numBlending)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.gbOperacoesAritmeticas.SuspendLayout();
+            this.gbOperacoesLogicas.SuspendLayout();
+            this.gbFiltrosPassaBaixa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownOrdem)).BeginInit();
+            this.gbOperacoesMorfologicas.SuspendLayout();
+            this.gbFiltrosPassaAlta.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnImg1
@@ -443,54 +455,61 @@
             this.btnLimiarizacao.UseVisualStyleBackColor = true;
             this.btnLimiarizacao.Click += new System.EventHandler(this.btnLimiarizacao_Click);
             // 
-            // groupBox1
+            // gbOperacoesAritmeticas
             // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.groupBox1.Controls.Add(this.btnSomarImagens);
-            this.groupBox1.Controls.Add(this.btnSubtrairImagens);
-            this.groupBox1.Controls.Add(this.numMultiDivisor);
-            this.groupBox1.Controls.Add(this.btnMultiplicarImagens);
-            this.groupBox1.Controls.Add(this.btnDividirImagens);
-            this.groupBox1.Location = new System.Drawing.Point(37, 296);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(245, 169);
-            this.groupBox1.TabIndex = 31;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Operações Aritméticas";
+            this.gbOperacoesAritmeticas.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.gbOperacoesAritmeticas.Controls.Add(this.btnSomarImagens);
+            this.gbOperacoesAritmeticas.Controls.Add(this.btnSubtrairImagens);
+            this.gbOperacoesAritmeticas.Controls.Add(this.numMultiDivisor);
+            this.gbOperacoesAritmeticas.Controls.Add(this.btnMultiplicarImagens);
+            this.gbOperacoesAritmeticas.Controls.Add(this.btnDividirImagens);
+            this.gbOperacoesAritmeticas.Location = new System.Drawing.Point(37, 296);
+            this.gbOperacoesAritmeticas.Name = "gbOperacoesAritmeticas";
+            this.gbOperacoesAritmeticas.Size = new System.Drawing.Size(245, 169);
+            this.gbOperacoesAritmeticas.TabIndex = 31;
+            this.gbOperacoesAritmeticas.TabStop = false;
+            this.gbOperacoesAritmeticas.Text = "Operações Aritméticas";
             // 
-            // groupBox2
+            // gbOperacoesLogicas
             // 
-            this.groupBox2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.groupBox2.Controls.Add(this.btnAND);
-            this.groupBox2.Controls.Add(this.btnOR);
-            this.groupBox2.Controls.Add(this.btnNOT);
-            this.groupBox2.Controls.Add(this.btnXOR);
-            this.groupBox2.Location = new System.Drawing.Point(313, 296);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(166, 169);
-            this.groupBox2.TabIndex = 32;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Operações Lógicas";
+            this.gbOperacoesLogicas.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.gbOperacoesLogicas.Controls.Add(this.btnAND);
+            this.gbOperacoesLogicas.Controls.Add(this.btnOR);
+            this.gbOperacoesLogicas.Controls.Add(this.btnNOT);
+            this.gbOperacoesLogicas.Controls.Add(this.btnXOR);
+            this.gbOperacoesLogicas.Location = new System.Drawing.Point(313, 296);
+            this.gbOperacoesLogicas.Name = "gbOperacoesLogicas";
+            this.gbOperacoesLogicas.Size = new System.Drawing.Size(166, 169);
+            this.gbOperacoesLogicas.TabIndex = 32;
+            this.gbOperacoesLogicas.TabStop = false;
+            this.gbOperacoesLogicas.Text = "Operações Lógicas";
             // 
-            // groupBox3
+            // gbFiltrosPassaBaixa
             // 
-            this.groupBox3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.groupBox3.Controls.Add(this.txtGaussiano);
-            this.groupBox3.Controls.Add(this.comboBox1);
-            this.groupBox3.Controls.Add(this.txtOrdem);
-            this.groupBox3.Controls.Add(this.btnGaussiano);
-            this.groupBox3.Controls.Add(this.btnSuavizacaoConservativa);
-            this.groupBox3.Controls.Add(this.btnOrdem);
-            this.groupBox3.Controls.Add(this.btnMediana);
-            this.groupBox3.Controls.Add(this.btnMean);
-            this.groupBox3.Controls.Add(this.btnMaximo);
-            this.groupBox3.Controls.Add(this.btnMinimo);
-            this.groupBox3.Location = new System.Drawing.Point(507, 296);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(196, 275);
-            this.groupBox3.TabIndex = 33;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Filtros Passa-Baixa";
+            this.gbFiltrosPassaBaixa.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.gbFiltrosPassaBaixa.Controls.Add(this.txtGaussiano);
+            this.gbFiltrosPassaBaixa.Controls.Add(this.comboBox1);
+            this.gbFiltrosPassaBaixa.Controls.Add(this.txtOrdem);
+            this.gbFiltrosPassaBaixa.Controls.Add(this.btnGaussiano);
+            this.gbFiltrosPassaBaixa.Controls.Add(this.btnSuavizacaoConservativa);
+            this.gbFiltrosPassaBaixa.Controls.Add(this.btnOrdem);
+            this.gbFiltrosPassaBaixa.Controls.Add(this.btnMediana);
+            this.gbFiltrosPassaBaixa.Controls.Add(this.btnMean);
+            this.gbFiltrosPassaBaixa.Controls.Add(this.btnMaximo);
+            this.gbFiltrosPassaBaixa.Controls.Add(this.btnMinimo);
+            this.gbFiltrosPassaBaixa.Location = new System.Drawing.Point(507, 296);
+            this.gbFiltrosPassaBaixa.Name = "gbFiltrosPassaBaixa";
+            this.gbFiltrosPassaBaixa.Size = new System.Drawing.Size(196, 275);
+            this.gbFiltrosPassaBaixa.TabIndex = 33;
+            this.gbFiltrosPassaBaixa.TabStop = false;
+            this.gbFiltrosPassaBaixa.Text = "Filtros Passa-Baixa";
+            // 
+            // txtGaussiano
+            // 
+            this.txtGaussiano.Location = new System.Drawing.Point(28, 233);
+            this.txtGaussiano.Name = "txtGaussiano";
+            this.txtGaussiano.Size = new System.Drawing.Size(58, 22);
+            this.txtGaussiano.TabIndex = 35;
             // 
             // comboBox1
             // 
@@ -503,6 +522,13 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(63, 24);
             this.comboBox1.TabIndex = 34;
+            // 
+            // txtOrdem
+            // 
+            this.txtOrdem.Location = new System.Drawing.Point(28, 156);
+            this.txtOrdem.Name = "txtOrdem";
+            this.txtOrdem.Size = new System.Drawing.Size(58, 22);
+            this.txtOrdem.TabIndex = 34;
             // 
             // btnGaussiano
             // 
@@ -586,19 +612,106 @@
             this.numUpDownOrdem.Size = new System.Drawing.Size(57, 22);
             this.numUpDownOrdem.TabIndex = 34;
             // 
-            // txtOrdem
+            // gbOperacoesMorfologicas
             // 
-            this.txtOrdem.Location = new System.Drawing.Point(28, 156);
-            this.txtOrdem.Name = "txtOrdem";
-            this.txtOrdem.Size = new System.Drawing.Size(58, 22);
-            this.txtOrdem.TabIndex = 34;
+            this.gbOperacoesMorfologicas.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.gbOperacoesMorfologicas.Controls.Add(this.btnContorno);
+            this.gbOperacoesMorfologicas.Controls.Add(this.btnDilatacao);
+            this.gbOperacoesMorfologicas.Controls.Add(this.btnFechamento);
+            this.gbOperacoesMorfologicas.Controls.Add(this.btnErosao);
+            this.gbOperacoesMorfologicas.Controls.Add(this.btnAbertura);
+            this.gbOperacoesMorfologicas.Location = new System.Drawing.Point(795, 501);
+            this.gbOperacoesMorfologicas.Name = "gbOperacoesMorfologicas";
+            this.gbOperacoesMorfologicas.Size = new System.Drawing.Size(182, 168);
+            this.gbOperacoesMorfologicas.TabIndex = 35;
+            this.gbOperacoesMorfologicas.TabStop = false;
+            this.gbOperacoesMorfologicas.Text = "Operações Morfológicas";
             // 
-            // txtGaussiano
+            // btnContorno
             // 
-            this.txtGaussiano.Location = new System.Drawing.Point(28, 233);
-            this.txtGaussiano.Name = "txtGaussiano";
-            this.txtGaussiano.Size = new System.Drawing.Size(58, 22);
-            this.txtGaussiano.TabIndex = 35;
+            this.btnContorno.Location = new System.Drawing.Point(53, 137);
+            this.btnContorno.Name = "btnContorno";
+            this.btnContorno.Size = new System.Drawing.Size(75, 23);
+            this.btnContorno.TabIndex = 40;
+            this.btnContorno.Text = "Contorno";
+            this.btnContorno.UseVisualStyleBackColor = true;
+            // 
+            // btnDilatacao
+            // 
+            this.btnDilatacao.Location = new System.Drawing.Point(53, 22);
+            this.btnDilatacao.Name = "btnDilatacao";
+            this.btnDilatacao.Size = new System.Drawing.Size(75, 23);
+            this.btnDilatacao.TabIndex = 36;
+            this.btnDilatacao.Text = "Dilatação";
+            this.btnDilatacao.UseVisualStyleBackColor = true;
+            // 
+            // btnFechamento
+            // 
+            this.btnFechamento.Location = new System.Drawing.Point(38, 109);
+            this.btnFechamento.Name = "btnFechamento";
+            this.btnFechamento.Size = new System.Drawing.Size(104, 23);
+            this.btnFechamento.TabIndex = 39;
+            this.btnFechamento.Text = "Fechamento";
+            this.btnFechamento.UseVisualStyleBackColor = true;
+            // 
+            // btnErosao
+            // 
+            this.btnErosao.Location = new System.Drawing.Point(53, 51);
+            this.btnErosao.Name = "btnErosao";
+            this.btnErosao.Size = new System.Drawing.Size(75, 23);
+            this.btnErosao.TabIndex = 37;
+            this.btnErosao.Text = "Erosao";
+            this.btnErosao.UseVisualStyleBackColor = true;
+            // 
+            // btnAbertura
+            // 
+            this.btnAbertura.Location = new System.Drawing.Point(53, 80);
+            this.btnAbertura.Name = "btnAbertura";
+            this.btnAbertura.Size = new System.Drawing.Size(75, 23);
+            this.btnAbertura.TabIndex = 38;
+            this.btnAbertura.Text = "Abertura";
+            this.btnAbertura.UseVisualStyleBackColor = true;
+            // 
+            // gbFiltrosPassaAlta
+            // 
+            this.gbFiltrosPassaAlta.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.gbFiltrosPassaAlta.Controls.Add(this.btnLaplaciano);
+            this.gbFiltrosPassaAlta.Controls.Add(this.btnSobel);
+            this.gbFiltrosPassaAlta.Controls.Add(this.btnPrewitt);
+            this.gbFiltrosPassaAlta.Location = new System.Drawing.Point(111, 559);
+            this.gbFiltrosPassaAlta.Name = "gbFiltrosPassaAlta";
+            this.gbFiltrosPassaAlta.Size = new System.Drawing.Size(143, 127);
+            this.gbFiltrosPassaAlta.TabIndex = 36;
+            this.gbFiltrosPassaAlta.TabStop = false;
+            this.gbFiltrosPassaAlta.Text = "Filtros Passa-Alta";
+            // 
+            // btnLaplaciano
+            // 
+            this.btnLaplaciano.Location = new System.Drawing.Point(27, 89);
+            this.btnLaplaciano.Name = "btnLaplaciano";
+            this.btnLaplaciano.Size = new System.Drawing.Size(90, 23);
+            this.btnLaplaciano.TabIndex = 39;
+            this.btnLaplaciano.Text = "Laplaciano";
+            this.btnLaplaciano.UseVisualStyleBackColor = true;
+            // 
+            // btnSobel
+            // 
+            this.btnSobel.Location = new System.Drawing.Point(34, 60);
+            this.btnSobel.Name = "btnSobel";
+            this.btnSobel.Size = new System.Drawing.Size(75, 23);
+            this.btnSobel.TabIndex = 38;
+            this.btnSobel.Text = "Sobel";
+            this.btnSobel.UseVisualStyleBackColor = true;
+            // 
+            // btnPrewitt
+            // 
+            this.btnPrewitt.Location = new System.Drawing.Point(34, 31);
+            this.btnPrewitt.Name = "btnPrewitt";
+            this.btnPrewitt.Size = new System.Drawing.Size(75, 23);
+            this.btnPrewitt.TabIndex = 37;
+            this.btnPrewitt.Text = "Prewitt";
+            this.btnPrewitt.UseVisualStyleBackColor = true;
+            this.btnPrewitt.Click += new System.EventHandler(this.btnPrewitt_Click);
             // 
             // Form1
             // 
@@ -606,10 +719,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1924, 1131);
+            this.Controls.Add(this.gbFiltrosPassaAlta);
+            this.Controls.Add(this.gbOperacoesMorfologicas);
             this.Controls.Add(this.numUpDownOrdem);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbFiltrosPassaBaixa);
+            this.Controls.Add(this.gbOperacoesLogicas);
+            this.Controls.Add(this.gbOperacoesAritmeticas);
             this.Controls.Add(this.btnLimiarizacao);
             this.Controls.Add(this.btnHistograma);
             this.Controls.Add(this.chart2);
@@ -643,11 +758,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.numBlending)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.gbOperacoesAritmeticas.ResumeLayout(false);
+            this.gbOperacoesLogicas.ResumeLayout(false);
+            this.gbFiltrosPassaBaixa.ResumeLayout(false);
+            this.gbFiltrosPassaBaixa.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownOrdem)).EndInit();
+            this.gbOperacoesMorfologicas.ResumeLayout(false);
+            this.gbFiltrosPassaAlta.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -686,9 +803,9 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
         private System.Windows.Forms.Button btnHistograma;
         private System.Windows.Forms.Button btnLimiarizacao;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox gbOperacoesAritmeticas;
+        private System.Windows.Forms.GroupBox gbOperacoesLogicas;
+        private System.Windows.Forms.GroupBox gbFiltrosPassaBaixa;
         private System.Windows.Forms.Button btnGaussiano;
         private System.Windows.Forms.Button btnSuavizacaoConservativa;
         private System.Windows.Forms.Button btnOrdem;
@@ -700,5 +817,15 @@
         private System.Windows.Forms.NumericUpDown numUpDownOrdem;
         private System.Windows.Forms.TextBox txtOrdem;
         private System.Windows.Forms.TextBox txtGaussiano;
+        private System.Windows.Forms.GroupBox gbOperacoesMorfologicas;
+        private System.Windows.Forms.Button btnDilatacao;
+        private System.Windows.Forms.Button btnErosao;
+        private System.Windows.Forms.Button btnAbertura;
+        private System.Windows.Forms.Button btnFechamento;
+        private System.Windows.Forms.Button btnContorno;
+        private System.Windows.Forms.GroupBox gbFiltrosPassaAlta;
+        private System.Windows.Forms.Button btnLaplaciano;
+        private System.Windows.Forms.Button btnSobel;
+        private System.Windows.Forms.Button btnPrewitt;
     }
 }

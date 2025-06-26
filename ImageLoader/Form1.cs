@@ -1226,7 +1226,6 @@ namespace TrabalhoFinal
                         }
                     }
 
-                    // Definir o novo pixel na imagem filtrada (em escala de cinza)
                     int valorFinal = Clamp((int)intensidade);
                     imgFiltrada.SetPixel(x, y, Color.FromArgb(valorFinal, valorFinal, valorFinal));
                 }
@@ -1257,6 +1256,66 @@ namespace TrabalhoFinal
                 }
             }
             return true; 
+        }
+
+        private void btnPrewitt_Click(object sender, EventArgs e)
+        {
+            {
+                if (img1 == null)
+                {
+                    MessageBox.Show("Carregue uma imagem antes de aplicar o filtro.");
+                    return;
+                }
+
+                int largura = img1.Width;
+                int altura = img1.Height;
+                Bitmap imgFiltrada = new Bitmap(largura, altura);
+
+                for (int y = 1; y < altura - 1; y++)
+                {
+                    for (int x = 1; x < largura - 1; x++)
+                    {
+                        // Valores dos pixels vizinhos para Gx
+                        int v00x = img1.GetPixel(x - 1, y - 1).R; // Cima à esquerda
+                        int v01x = img1.GetPixel(x - 1, y).R;     // Cima
+                        int v02x = img1.GetPixel(x - 1, y + 1).R; // Cima à direita
+                        int v10x = img1.GetPixel(x, y - 1).R;     // Esquerda
+                        int v11x = img1.GetPixel(x, y).R;         // Centro
+                        int v12x = img1.GetPixel(x, y + 1).R;     // Direita
+                        int v20x = img1.GetPixel(x + 1, y - 1).R; // Baixo à esquerda
+                        int v21x = img1.GetPixel(x + 1, y).R;     // Baixo
+                        int v22x = img1.GetPixel(x + 1, y + 1).R; // Baixo à direita
+
+                        // Calcular Gx
+                        double gx = (-1 * v00x) + (0 * v01x) + (1 * v02x) +
+                                    (-1 * v10x) + (0 * v11x) + (1 * v12x) +
+                                    (-1 * v20x) + (0 * v21x) + (1 * v22x);
+
+                        // Valores dos pixels vizinhos para Gy
+                        int v00y = img1.GetPixel(x - 1, y - 1).R; // Cima à esquerda
+                        int v01y = img1.GetPixel(x - 1, y).R;     // Cima
+                        int v02y = img1.GetPixel(x - 1, y + 1).R; // Cima à direita
+                        int v10y = img1.GetPixel(x, y - 1).R;     // Esquerda
+                        int v11y = img1.GetPixel(x, y).R;         // Centro
+                        int v12y = img1.GetPixel(x, y + 1).R;     // Direita
+                        int v20y = img1.GetPixel(x + 1, y - 1).R; // Baixo à esquerda
+                        int v21y = img1.GetPixel(x + 1, y).R;     // Baixo
+                        int v22y = img1.GetPixel(x + 1, y + 1).R; // Baixo à direita
+
+                        // Calcular Gy
+                        double gy = (-1 * v00y) + (-1 * v01y) + (-1 * v02y) +
+                                    (0 * v10y) + (0 * v11y) + (0 * v12y) +
+                                    (1 * v20y) + (1 * v21y) + (1 * v22y);
+
+                        // Calcular a magnitude e aplicar o clamp
+                        int intensidade = Clamp((int)Math.Sqrt(gx * gx + gy * gy));
+                        imgFiltrada.SetPixel(x, y, Color.FromArgb(intensidade, intensidade, intensidade));
+                    }
+                }
+
+                pbImgResultado.Image = imgFiltrada;
+            }
+
         }
     }
 }
