@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.btnImg1 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.pbImg1 = new System.Windows.Forms.PictureBox();
@@ -405,32 +405,32 @@
             // 
             // chart1
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
+            chartArea9.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea9);
+            legend9.Name = "Legend1";
+            this.chart1.Legends.Add(legend9);
             this.chart1.Location = new System.Drawing.Point(13, 775);
             this.chart1.Name = "chart1";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chart1.Series.Add(series3);
+            series9.ChartArea = "ChartArea1";
+            series9.Legend = "Legend1";
+            series9.Name = "Series1";
+            this.chart1.Series.Add(series9);
             this.chart1.Size = new System.Drawing.Size(654, 300);
             this.chart1.TabIndex = 27;
             this.chart1.Text = "chart1";
             // 
             // chart2
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.chart2.Legends.Add(legend4);
+            chartArea10.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea10);
+            legend10.Name = "Legend1";
+            this.chart2.Legends.Add(legend10);
             this.chart2.Location = new System.Drawing.Point(1220, 775);
             this.chart2.Name = "chart2";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.chart2.Series.Add(series4);
+            series10.ChartArea = "ChartArea1";
+            series10.Legend = "Legend1";
+            series10.Name = "Series1";
+            this.chart2.Series.Add(series10);
             this.chart2.Size = new System.Drawing.Size(646, 300);
             this.chart2.TabIndex = 28;
             this.chart2.Text = "chart2";
@@ -489,6 +489,7 @@
             this.gbFiltrosPassaBaixa.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.gbFiltrosPassaBaixa.Controls.Add(this.txtGaussiano);
             this.gbFiltrosPassaBaixa.Controls.Add(this.comboBox1);
+            this.gbFiltrosPassaBaixa.Controls.Add(this.numUpDownOrdem);
             this.gbFiltrosPassaBaixa.Controls.Add(this.txtOrdem);
             this.gbFiltrosPassaBaixa.Controls.Add(this.btnGaussiano);
             this.gbFiltrosPassaBaixa.Controls.Add(this.btnSuavizacaoConservativa);
@@ -602,7 +603,7 @@
             // 
             // numUpDownOrdem
             // 
-            this.numUpDownOrdem.Location = new System.Drawing.Point(444, 491);
+            this.numUpDownOrdem.Location = new System.Drawing.Point(6, 195);
             this.numUpDownOrdem.Maximum = new decimal(new int[] {
             8,
             0,
@@ -620,7 +621,7 @@
             this.gbOperacoesMorfologicas.Controls.Add(this.btnFechamento);
             this.gbOperacoesMorfologicas.Controls.Add(this.btnErosao);
             this.gbOperacoesMorfologicas.Controls.Add(this.btnAbertura);
-            this.gbOperacoesMorfologicas.Location = new System.Drawing.Point(795, 501);
+            this.gbOperacoesMorfologicas.Location = new System.Drawing.Point(283, 491);
             this.gbOperacoesMorfologicas.Name = "gbOperacoesMorfologicas";
             this.gbOperacoesMorfologicas.Size = new System.Drawing.Size(182, 168);
             this.gbOperacoesMorfologicas.TabIndex = 35;
@@ -638,12 +639,13 @@
             // 
             // btnDilatacao
             // 
-            this.btnDilatacao.Location = new System.Drawing.Point(53, 22);
+            this.btnDilatacao.Location = new System.Drawing.Point(46, 22);
             this.btnDilatacao.Name = "btnDilatacao";
-            this.btnDilatacao.Size = new System.Drawing.Size(75, 23);
+            this.btnDilatacao.Size = new System.Drawing.Size(89, 23);
             this.btnDilatacao.TabIndex = 36;
             this.btnDilatacao.Text = "Dilatação";
             this.btnDilatacao.UseVisualStyleBackColor = true;
+            this.btnDilatacao.Click += new System.EventHandler(this.btnDilatacao_Click);
             // 
             // btnFechamento
             // 
@@ -678,7 +680,7 @@
             this.gbFiltrosPassaAlta.Controls.Add(this.btnLaplaciano);
             this.gbFiltrosPassaAlta.Controls.Add(this.btnSobel);
             this.gbFiltrosPassaAlta.Controls.Add(this.btnPrewitt);
-            this.gbFiltrosPassaAlta.Location = new System.Drawing.Point(111, 559);
+            this.gbFiltrosPassaAlta.Location = new System.Drawing.Point(538, 595);
             this.gbFiltrosPassaAlta.Name = "gbFiltrosPassaAlta";
             this.gbFiltrosPassaAlta.Size = new System.Drawing.Size(143, 127);
             this.gbFiltrosPassaAlta.TabIndex = 36;
@@ -693,6 +695,7 @@
             this.btnLaplaciano.TabIndex = 39;
             this.btnLaplaciano.Text = "Laplaciano";
             this.btnLaplaciano.UseVisualStyleBackColor = true;
+            this.btnLaplaciano.Click += new System.EventHandler(this.btnLaplaciano_Click);
             // 
             // btnSobel
             // 
@@ -722,7 +725,6 @@
             this.ClientSize = new System.Drawing.Size(1924, 1131);
             this.Controls.Add(this.gbFiltrosPassaAlta);
             this.Controls.Add(this.gbOperacoesMorfologicas);
-            this.Controls.Add(this.numUpDownOrdem);
             this.Controls.Add(this.gbFiltrosPassaBaixa);
             this.Controls.Add(this.gbOperacoesLogicas);
             this.Controls.Add(this.gbOperacoesAritmeticas);

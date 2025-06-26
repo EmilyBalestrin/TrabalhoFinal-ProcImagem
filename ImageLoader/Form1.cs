@@ -1374,7 +1374,122 @@ namespace TrabalhoFinal
 
             pbImgResultado .Image = imgFiltrada;
         }
+
+        private void btnLaplaciano_Click(object sender, EventArgs e)
+        {
+            if (img1 == null)
+            {
+                MessageBox.Show("Carregue uma imagem antes de aplicar o filtro.");
+                return;
+            }
+
+            int largura = img1.Width;
+            int altura = img1.Height;
+            Bitmap imgFiltrada = new Bitmap(largura, altura);
+
+            for (int y = 1; y < altura - 1; y++)
+            {
+                for (int x = 1; x < largura - 1; x++)
+                {
+                    // Valores dos pixels vizinhos para Gx
+                    int v00x = img1.GetPixel(x - 1, y - 1).R; // Cima à esquerda
+                    int v01x = img1.GetPixel(x - 1, y).R;     // Cima
+                    int v02x = img1.GetPixel(x - 1, y + 1).R; // Cima à direita
+                    int v10x = img1.GetPixel(x, y - 1).R;     // Esquerda
+                    int v11x = img1.GetPixel(x, y).R;         // Centro
+                    int v12x = img1.GetPixel(x, y + 1).R;     // Direita
+                    int v20x = img1.GetPixel(x + 1, y - 1).R; // Baixo à esquerda
+                    int v21x = img1.GetPixel(x + 1, y).R;     // Baixo
+                    int v22x = img1.GetPixel(x + 1, y + 1).R; // Baixo à direita
+
+                    // Calcular Gx usando o kernel Laplaciano
+                    int gx = (0 * v00x) + (1 * v01x) + (0 * v02x) +
+                             (1 * v10x) + (-4 * v11x) + (1 * v12x) +
+                             (0 * v20x) + (1 * v21x) + (0 * v22x);
+
+                    // Valores dos pixels vizinhos para Gy
+                    int v00y = img1.GetPixel(x - 1, y - 1).R; // Cima à esquerda
+                    int v01y = img1.GetPixel(x - 1, y).R;     // Cima
+                    int v02y = img1.GetPixel(x - 1, y + 1).R; // Cima à direita
+                    int v10y = img1.GetPixel(x, y - 1).R;     // Esquerda
+                    int v11y = img1.GetPixel(x, y).R;         // Centro
+                    int v12y = img1.GetPixel(x, y + 1).R;     // Direita
+                    int v20y = img1.GetPixel(x + 1, y - 1).R; // Baixo à esquerda
+                    int v21y = img1.GetPixel(x + 1, y).R;     // Baixo
+                    int v22y = img1.GetPixel(x + 1, y + 1).R; // Baixo à direita
+
+                    // Calcular Gy usando o kernel Laplaciano
+                    int gy = (0 * v00y) + (-1 * v01y) + (0 * v02y) +
+                             (-1 * v10y) + (4 * v11y) + (-1 * v12y) +
+                             (0 * v20y) + (-1 * v21y) + (0 * v22y);
+
+                    // A intensidade final pode ser baseada em gx ou gy (ou ambos)
+                    int intensidade = Clamp((int)Math.Sqrt(gx * gx + gy * gy));
+                    imgFiltrada.SetPixel(x, y, Color.FromArgb(intensidade, intensidade, intensidade));
+                }
+            }
+
+            pbImgResultado.Image = imgFiltrada;
+        }
+
+        private void btnDilatacao_Click(object sender, EventArgs e)
+        {
+            if (img1 == null)
+            {
+                MessageBox.Show("Por favor, carregue uma imagem antes de aplicar o filtro.");
+                return;
+            }
+
+            int largura = img1.Width;
+            int altura = img1.Height;
+
+            Bitmap imgDilatada = new Bitmap(largura, altura);
+
+            // Percorrer a imagem original e aplicar a dilatação
+            for (int y = 1; y < altura - 1; y++) 
+            {
+                for (int x = 1; x < largura - 1; x++) 
+                {
+                    bool dilatado = false;
+
+                    // Verificar a vizinhança 3x3 ao redor do pixel (x, y)
+                    for (int ky = -1; ky <= 1; ky++) // Loop vertical
+                    {
+                        for (int kx = -1; kx <= 1; kx++) // Loop horizontal
+                        {
+                            // Criar a cruz do elemento estruturante 3x3
+                            if (kx == 0 || ky == 0) // A cruz é composta por elementos na linha e coluna centrais
+                            {
+                                Color pixel = img1.GetPixel(x + kx, y + ky);
+
+                                // Verificar se o pixel é "diferente de 0" (qualquer pixel diferente de preto)
+                                if (pixel.R > 0 || pixel.G > 0 || pixel.B > 0) // Se o pixel não for preto
+                                {
+                                    dilatado = true; // Se qualquer pixel na vizinhança for diferente de preto, dilata
+                                    break;
+                                }
+                            }
+                        }
+                        if (dilatado) break;
+                    }
+
+                    // Se a vizinhança tem pelo menos um pixel "branco", dilate (coloque 1)
+                    if (dilatado)
+                    {
+                        imgDilatada.SetPixel(x, y, Color.White); // Coloca branco (1 na imagem binária)
+                    }
+                    else
+                    {
+                        imgDilatada.SetPixel(x, y, Color.Black); // Coloca preto (0 na imagem binária)
+                    }
+                }
+            }
+
+            // Atualizar a PictureBox com a imagem dilatada
+            pbImgResultado.Image = imgDilatada;
+        }
     }
 }
+
 
  
