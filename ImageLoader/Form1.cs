@@ -1485,8 +1485,70 @@ namespace TrabalhoFinal
                 }
             }
 
-            // Atualizar a PictureBox com a imagem dilatada
             pbImgResultado.Image = imgDilatada;
+        }
+
+        private void btnErosao_Click(object sender, EventArgs e)
+        {
+            if (img1 == null)
+            {
+                MessageBox.Show("Por favor, carregue uma imagem antes de aplicar o filtro.");
+                return;
+            }
+
+            int largura = img1.Width;
+            int altura = img1.Height;
+
+            Bitmap imgErosionada = new Bitmap(largura, altura);
+
+            int[,] elementoEstruturante = {
+                    { 0, 1, 0 },
+                    { 1, 1, 1 },
+                    { 0, 1, 0 }
+            };
+
+            // Percorrer a imagem original e aplicar a erosão
+            for (int y = 1; y < altura - 1; y++) // Ignorar as bordas
+            {
+                for (int x = 1; x < largura - 1; x++) // Ignorar as bordas
+                {
+                    bool erodido = true; // Inicializa como verdadeiro
+
+                    // Verificar a vizinhança 3x3 ao redor do pixel (x, y)
+                    for (int ky = -1; ky <= 1; ky++) // Loop vertical
+                    {
+                        for (int kx = -1; kx <= 1; kx++) // Loop horizontal
+                        {
+                            if (elementoEstruturante[ky + 1, kx + 1] == 1) // Verifica se o elemento estruturante é 1
+                            {
+                                Color pixel = img1.GetPixel(x + kx, y + ky);
+
+                                // Se algum pixel na vizinhança for preto (0), a erosão falha
+                                if (pixel.R == 0 && pixel.G == 0 && pixel.B == 0) // Preto
+                                {
+                                    erodido = false; // Se encontrar um pixel preto, a erosão falha
+                                    break;
+                                }
+                            }
+                        }
+                        if (!erodido)
+                            break;
+                    }
+
+                    // Se todos os pixels na vizinhança forem diferentes de preto, coloca 1 (branco)
+                    if (erodido)
+                    {
+                        imgErosionada.SetPixel(x, y, Color.White); // Branco (1)
+                    }
+                    else
+                    {
+                        imgErosionada.SetPixel(x, y, Color.Black); // Preto (0)
+                    }
+                }
+            }
+
+            // Atualizar a PictureBox com a imagem erodida
+            pbImgResultado.Image = imgErosionada;
         }
     }
 }
