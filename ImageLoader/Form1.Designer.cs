@@ -79,6 +79,7 @@
             this.btnMinimo = new System.Windows.Forms.Button();
             this.numUpDownOrdem = new System.Windows.Forms.NumericUpDown();
             this.txtOrdem = new System.Windows.Forms.TextBox();
+            this.txtGaussiano = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbImg1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImgResultado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numBrilho)).BeginInit();
@@ -474,6 +475,7 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.groupBox3.Controls.Add(this.txtGaussiano);
             this.groupBox3.Controls.Add(this.comboBox1);
             this.groupBox3.Controls.Add(this.txtOrdem);
             this.groupBox3.Controls.Add(this.btnGaussiano);
@@ -510,6 +512,7 @@
             this.btnGaussiano.TabIndex = 6;
             this.btnGaussiano.Text = "Gaussiano";
             this.btnGaussiano.UseVisualStyleBackColor = true;
+            this.btnGaussiano.Click += new System.EventHandler(this.btnGaussiano_Click);
             // 
             // btnSuavizacaoConservativa
             // 
@@ -573,7 +576,7 @@
             // 
             // numUpDownOrdem
             // 
-            this.numUpDownOrdem.Location = new System.Drawing.Point(433, 491);
+            this.numUpDownOrdem.Location = new System.Drawing.Point(444, 491);
             this.numUpDownOrdem.Maximum = new decimal(new int[] {
             8,
             0,
@@ -585,10 +588,17 @@
             // 
             // txtOrdem
             // 
-            this.txtOrdem.Location = new System.Drawing.Point(35, 156);
+            this.txtOrdem.Location = new System.Drawing.Point(28, 156);
             this.txtOrdem.Name = "txtOrdem";
             this.txtOrdem.Size = new System.Drawing.Size(58, 22);
             this.txtOrdem.TabIndex = 34;
+            // 
+            // txtGaussiano
+            // 
+            this.txtGaussiano.Location = new System.Drawing.Point(28, 233);
+            this.txtGaussiano.Name = "txtGaussiano";
+            this.txtGaussiano.Size = new System.Drawing.Size(58, 22);
+            this.txtGaussiano.TabIndex = 35;
             // 
             // Form1
             // 
@@ -689,5 +699,6 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.NumericUpDown numUpDownOrdem;
         private System.Windows.Forms.TextBox txtOrdem;
+        private System.Windows.Forms.TextBox txtGaussiano;
     }
 }

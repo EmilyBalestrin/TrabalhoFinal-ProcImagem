@@ -1150,5 +1150,114 @@ namespace TrabalhoFinal
             }
 
         }
+
+        private void btnGaussiano_Click(object sender, EventArgs e)
+        {
+            if (img1 == null)
+            {
+                MessageBox.Show("Por favor, carregue uma imagem antes de aplicar o filtro.");
+                return;
+            }
+
+            if (!IsGrayscaleImage(img1))
+            {
+                MessageBox.Show("A imagem não está em preto e branco. Carregue uma imagem em escala de cinza.");
+                return;
+            }
+
+            // Obter o valor de sigma da TextBox
+            if (!double.TryParse(txtGaussiano.Text, out double sigma) || sigma <= 0)
+            {
+                MessageBox.Show("Por favor, insira um valor válido para sigma.");
+                return;
+            }
+
+            int largura = img1.Width;
+            int altura = img1.Height;
+
+            // Criar o kernel gaussiano 5x5
+            double[,] kernel = new double[5, 5];
+            double soma = 0.0;
+            int halfSize = 2; // Para um kernel 5x5
+
+            // Gerar o kernel gaussiano
+            for (int y = -halfSize; y <= halfSize; y++)
+            {
+                for (int x = -halfSize; x <= halfSize; x++)
+                {
+                    double gauss = (1 / (2 * Math.PI * sigma * sigma)) *
+                                   Math.Exp(-(x * x + y * y) / (2 * sigma * sigma));
+                    kernel[y + halfSize, x + halfSize] = gauss;
+                    soma += gauss;
+                }
+            }
+
+            // Normalizar o kernel
+            for (int y = 0; y < 5; y++)
+            {
+                for (int x = 0; x < 5; x++)
+                {
+                    kernel[y, x] /= soma;
+                }
+            }
+
+            Bitmap imgFiltrada = new Bitmap(largura, altura);
+
+            // Aplicar o filtro usando convolução
+            for (int y = 2; y < altura - 2; y++)
+            {
+                for (int x = 2; x < largura - 2; x++)
+                {
+                    double intensidade = 0;
+
+                    // Convolução para intensidade (escala de cinza)
+                    for (int ky = -halfSize; ky <= halfSize; ky++)
+                    {
+                        for (int kx = -halfSize; kx <= halfSize; kx++)
+                        {
+                            Color pixel = img1.GetPixel(x + kx, y + ky);
+
+                            // Calcular a intensidade média (escala de cinza)
+                            byte intensidadePixel = (byte)((pixel.R + pixel.G + pixel.B) / 3);
+                            double coef = kernel[ky + halfSize, kx + halfSize];
+
+                            // Somar o valor da intensidade ponderado pelo coeficiente do kernel
+                            intensidade += intensidadePixel * coef;
+                        }
+                    }
+
+                    // Definir o novo pixel na imagem filtrada (em escala de cinza)
+                    int valorFinal = Clamp((int)intensidade);
+                    imgFiltrada.SetPixel(x, y, Color.FromArgb(valorFinal, valorFinal, valorFinal));
+                }
+            }
+
+            pbImgResultado.Image = imgFiltrada;
+        }
+
+        // Método auxiliar para garantir que os valores estejam entre 0 e 255
+        private int Clamp(int valor)
+        {
+            return Math.Max(0, Math.Min(255, valor));
+        }
+
+        // Função para verificar se a imagem é em preto e branco (escala de cinza)
+        private bool IsGrayscaleImage(Bitmap img)
+        {
+            for (int y = 0; y < img.Height; y++)
+            {
+                for (int x = 0; x < img.Width; x++)
+                {
+                    Color pixel = img.GetPixel(x, y);
+
+                    if (pixel.R != pixel.G || pixel.G != pixel.B)
+                    {
+                        return false; 
+                    }
+                }
+            }
+            return true; 
+        }
     }
- }
+}
+ 
