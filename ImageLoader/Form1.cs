@@ -1687,8 +1687,42 @@ namespace TrabalhoFinal
             return imagemDilatada;
         }
 
+        private void btnContorno_Click(object sender, EventArgs e)
+        {
+            if (img1 == null)
+            {
+                MessageBox.Show("Por favor, carregue uma imagem antes de aplicar o filtro.");
+                return;
+            }
 
+            // Binariza a imagem original
+            Bitmap imgBinaria = BinarizarImagem(img1);
 
+            // Aplica erosão
+            Bitmap imgErosao = AplicarErosao(imgBinaria);
+
+            int largura = imgBinaria.Width;
+            int altura = imgBinaria.Height;
+            Bitmap imgContorno = new Bitmap(largura, altura);
+
+            // Subtrai pixel a pixel: binária - erosão
+            for (int y = 0; y < altura; y++)
+            {
+                for (int x = 0; x < largura; x++)
+                {
+                    Color original = imgBinaria.GetPixel(x, y);
+                    Color erodido = imgErosao.GetPixel(x, y);
+
+                    // Se original for branco e erodido for preto => é contorno
+                    if (original.R == 255 && erodido.R == 0)
+                        imgContorno.SetPixel(x, y, Color.White);
+                    else
+                        imgContorno.SetPixel(x, y, Color.Black);
+                }
+            }
+
+            pbImgResultado.Image = imgContorno;
+        }
 
     }
 }

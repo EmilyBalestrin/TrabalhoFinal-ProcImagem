@@ -630,12 +630,13 @@
             // 
             // btnContorno
             // 
-            this.btnContorno.Location = new System.Drawing.Point(53, 137);
+            this.btnContorno.Location = new System.Drawing.Point(48, 137);
             this.btnContorno.Name = "btnContorno";
-            this.btnContorno.Size = new System.Drawing.Size(75, 23);
+            this.btnContorno.Size = new System.Drawing.Size(88, 23);
             this.btnContorno.TabIndex = 40;
             this.btnContorno.Text = "Contorno";
             this.btnContorno.UseVisualStyleBackColor = true;
+            this.btnContorno.Click += new System.EventHandler(this.btnContorno_Click);
             // 
             // btnDilatacao
             // 
