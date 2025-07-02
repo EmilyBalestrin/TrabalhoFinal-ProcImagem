@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea13 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend13 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea14 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend14 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.btnImg1 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.pbImg1 = new System.Windows.Forms.PictureBox();
@@ -71,6 +71,7 @@
             this.gbFiltrosPassaBaixa = new System.Windows.Forms.GroupBox();
             this.txtGaussiano = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.numUpDownOrdem = new System.Windows.Forms.NumericUpDown();
             this.txtOrdem = new System.Windows.Forms.TextBox();
             this.btnGaussiano = new System.Windows.Forms.Button();
             this.btnSuavizacaoConservativa = new System.Windows.Forms.Button();
@@ -79,7 +80,6 @@
             this.btnMean = new System.Windows.Forms.Button();
             this.btnMaximo = new System.Windows.Forms.Button();
             this.btnMinimo = new System.Windows.Forms.Button();
-            this.numUpDownOrdem = new System.Windows.Forms.NumericUpDown();
             this.gbOperacoesMorfologicas = new System.Windows.Forms.GroupBox();
             this.btnContorno = new System.Windows.Forms.Button();
             this.btnDilatacao = new System.Windows.Forms.Button();
@@ -149,7 +149,7 @@
             0,
             0,
             0});
-            this.numBrilho.Location = new System.Drawing.Point(606, 12);
+            this.numBrilho.Location = new System.Drawing.Point(606, 47);
             this.numBrilho.Maximum = new decimal(new int[] {
             255,
             0,
@@ -161,7 +161,7 @@
             // 
             // btnAumentarBrilho
             // 
-            this.btnAumentarBrilho.Location = new System.Drawing.Point(584, 41);
+            this.btnAumentarBrilho.Location = new System.Drawing.Point(584, 76);
             this.btnAumentarBrilho.Name = "btnAumentarBrilho";
             this.btnAumentarBrilho.Size = new System.Drawing.Size(137, 29);
             this.btnAumentarBrilho.TabIndex = 4;
@@ -171,7 +171,7 @@
             // 
             // btnDiminuirBrilho
             // 
-            this.btnDiminuirBrilho.Location = new System.Drawing.Point(584, 76);
+            this.btnDiminuirBrilho.Location = new System.Drawing.Point(584, 111);
             this.btnDiminuirBrilho.Name = "btnDiminuirBrilho";
             this.btnDiminuirBrilho.Size = new System.Drawing.Size(137, 29);
             this.btnDiminuirBrilho.TabIndex = 5;
@@ -323,7 +323,7 @@
             // 
             // btnBlending
             // 
-            this.btnBlending.Location = new System.Drawing.Point(826, 269);
+            this.btnBlending.Location = new System.Drawing.Point(1034, 41);
             this.btnBlending.Name = "btnBlending";
             this.btnBlending.Size = new System.Drawing.Size(151, 29);
             this.btnBlending.TabIndex = 21;
@@ -339,7 +339,7 @@
             0,
             0,
             65536});
-            this.numBlending.Location = new System.Drawing.Point(872, 241);
+            this.numBlending.Location = new System.Drawing.Point(1080, 13);
             this.numBlending.Maximum = new decimal(new int[] {
             1,
             0,
@@ -351,7 +351,7 @@
             // 
             // btnMedia
             // 
-            this.btnMedia.Location = new System.Drawing.Point(826, 304);
+            this.btnMedia.Location = new System.Drawing.Point(1034, 76);
             this.btnMedia.Name = "btnMedia";
             this.btnMedia.Size = new System.Drawing.Size(151, 29);
             this.btnMedia.TabIndex = 22;
@@ -405,39 +405,39 @@
             // 
             // chart1
             // 
-            chartArea13.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea13);
-            legend13.Name = "Legend1";
-            this.chart1.Legends.Add(legend13);
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
             this.chart1.Location = new System.Drawing.Point(13, 775);
             this.chart1.Name = "chart1";
-            series13.ChartArea = "ChartArea1";
-            series13.Legend = "Legend1";
-            series13.Name = "Series1";
-            this.chart1.Series.Add(series13);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chart1.Series.Add(series3);
             this.chart1.Size = new System.Drawing.Size(654, 300);
             this.chart1.TabIndex = 27;
             this.chart1.Text = "chart1";
             // 
             // chart2
             // 
-            chartArea14.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea14);
-            legend14.Name = "Legend1";
-            this.chart2.Legends.Add(legend14);
+            chartArea4.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chart2.Legends.Add(legend4);
             this.chart2.Location = new System.Drawing.Point(1220, 775);
             this.chart2.Name = "chart2";
-            series14.ChartArea = "ChartArea1";
-            series14.Legend = "Legend1";
-            series14.Name = "Series1";
-            this.chart2.Series.Add(series14);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chart2.Series.Add(series4);
             this.chart2.Size = new System.Drawing.Size(646, 300);
             this.chart2.TabIndex = 28;
             this.chart2.Text = "chart2";
             // 
             // btnHistograma
             // 
-            this.btnHistograma.Location = new System.Drawing.Point(826, 364);
+            this.btnHistograma.Location = new System.Drawing.Point(1034, 136);
             this.btnHistograma.Name = "btnHistograma";
             this.btnHistograma.Size = new System.Drawing.Size(151, 29);
             this.btnHistograma.TabIndex = 29;
@@ -447,7 +447,7 @@
             // 
             // btnLimiarizacao
             // 
-            this.btnLimiarizacao.Location = new System.Drawing.Point(826, 402);
+            this.btnLimiarizacao.Location = new System.Drawing.Point(1034, 174);
             this.btnLimiarizacao.Name = "btnLimiarizacao";
             this.btnLimiarizacao.Size = new System.Drawing.Size(151, 29);
             this.btnLimiarizacao.TabIndex = 30;
@@ -463,7 +463,7 @@
             this.gbOperacoesAritmeticas.Controls.Add(this.numMultiDivisor);
             this.gbOperacoesAritmeticas.Controls.Add(this.btnMultiplicarImagens);
             this.gbOperacoesAritmeticas.Controls.Add(this.btnDividirImagens);
-            this.gbOperacoesAritmeticas.Location = new System.Drawing.Point(37, 296);
+            this.gbOperacoesAritmeticas.Location = new System.Drawing.Point(660, 303);
             this.gbOperacoesAritmeticas.Name = "gbOperacoesAritmeticas";
             this.gbOperacoesAritmeticas.Size = new System.Drawing.Size(245, 169);
             this.gbOperacoesAritmeticas.TabIndex = 31;
@@ -477,7 +477,7 @@
             this.gbOperacoesLogicas.Controls.Add(this.btnOR);
             this.gbOperacoesLogicas.Controls.Add(this.btnNOT);
             this.gbOperacoesLogicas.Controls.Add(this.btnXOR);
-            this.gbOperacoesLogicas.Location = new System.Drawing.Point(313, 296);
+            this.gbOperacoesLogicas.Location = new System.Drawing.Point(938, 304);
             this.gbOperacoesLogicas.Name = "gbOperacoesLogicas";
             this.gbOperacoesLogicas.Size = new System.Drawing.Size(166, 169);
             this.gbOperacoesLogicas.TabIndex = 32;
@@ -498,7 +498,7 @@
             this.gbFiltrosPassaBaixa.Controls.Add(this.btnMean);
             this.gbFiltrosPassaBaixa.Controls.Add(this.btnMaximo);
             this.gbFiltrosPassaBaixa.Controls.Add(this.btnMinimo);
-            this.gbFiltrosPassaBaixa.Location = new System.Drawing.Point(507, 296);
+            this.gbFiltrosPassaBaixa.Location = new System.Drawing.Point(37, 304);
             this.gbFiltrosPassaBaixa.Name = "gbFiltrosPassaBaixa";
             this.gbFiltrosPassaBaixa.Size = new System.Drawing.Size(196, 275);
             this.gbFiltrosPassaBaixa.TabIndex = 33;
@@ -507,7 +507,7 @@
             // 
             // txtGaussiano
             // 
-            this.txtGaussiano.Location = new System.Drawing.Point(28, 233);
+            this.txtGaussiano.Location = new System.Drawing.Point(16, 232);
             this.txtGaussiano.Name = "txtGaussiano";
             this.txtGaussiano.Size = new System.Drawing.Size(58, 22);
             this.txtGaussiano.TabIndex = 35;
@@ -524,9 +524,21 @@
             this.comboBox1.Size = new System.Drawing.Size(63, 24);
             this.comboBox1.TabIndex = 34;
             // 
+            // numUpDownOrdem
+            // 
+            this.numUpDownOrdem.Location = new System.Drawing.Point(16, 195);
+            this.numUpDownOrdem.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.numUpDownOrdem.Name = "numUpDownOrdem";
+            this.numUpDownOrdem.Size = new System.Drawing.Size(57, 22);
+            this.numUpDownOrdem.TabIndex = 34;
+            // 
             // txtOrdem
             // 
-            this.txtOrdem.Location = new System.Drawing.Point(28, 156);
+            this.txtOrdem.Location = new System.Drawing.Point(21, 155);
             this.txtOrdem.Name = "txtOrdem";
             this.txtOrdem.Size = new System.Drawing.Size(58, 22);
             this.txtOrdem.TabIndex = 34;
@@ -601,18 +613,6 @@
             this.btnMinimo.UseVisualStyleBackColor = true;
             this.btnMinimo.Click += new System.EventHandler(this.btnMaximo_Click);
             // 
-            // numUpDownOrdem
-            // 
-            this.numUpDownOrdem.Location = new System.Drawing.Point(6, 195);
-            this.numUpDownOrdem.Maximum = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
-            this.numUpDownOrdem.Name = "numUpDownOrdem";
-            this.numUpDownOrdem.Size = new System.Drawing.Size(57, 22);
-            this.numUpDownOrdem.TabIndex = 34;
-            // 
             // gbOperacoesMorfologicas
             // 
             this.gbOperacoesMorfologicas.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
@@ -621,7 +621,7 @@
             this.gbOperacoesMorfologicas.Controls.Add(this.btnFechamento);
             this.gbOperacoesMorfologicas.Controls.Add(this.btnErosao);
             this.gbOperacoesMorfologicas.Controls.Add(this.btnAbertura);
-            this.gbOperacoesMorfologicas.Location = new System.Drawing.Point(283, 491);
+            this.gbOperacoesMorfologicas.Location = new System.Drawing.Point(433, 304);
             this.gbOperacoesMorfologicas.Name = "gbOperacoesMorfologicas";
             this.gbOperacoesMorfologicas.Size = new System.Drawing.Size(182, 168);
             this.gbOperacoesMorfologicas.TabIndex = 35;
@@ -655,6 +655,7 @@
             this.btnFechamento.TabIndex = 39;
             this.btnFechamento.Text = "Fechamento";
             this.btnFechamento.UseVisualStyleBackColor = true;
+            this.btnFechamento.Click += new System.EventHandler(this.btnFechamento_Click);
             // 
             // btnErosao
             // 
@@ -674,6 +675,7 @@
             this.btnAbertura.TabIndex = 38;
             this.btnAbertura.Text = "Abertura";
             this.btnAbertura.UseVisualStyleBackColor = true;
+            this.btnAbertura.Click += new System.EventHandler(this.btnAbertura_Click);
             // 
             // gbFiltrosPassaAlta
             // 
@@ -681,7 +683,7 @@
             this.gbFiltrosPassaAlta.Controls.Add(this.btnLaplaciano);
             this.gbFiltrosPassaAlta.Controls.Add(this.btnSobel);
             this.gbFiltrosPassaAlta.Controls.Add(this.btnPrewitt);
-            this.gbFiltrosPassaAlta.Location = new System.Drawing.Point(538, 595);
+            this.gbFiltrosPassaAlta.Location = new System.Drawing.Point(256, 304);
             this.gbFiltrosPassaAlta.Name = "gbFiltrosPassaAlta";
             this.gbFiltrosPassaAlta.Size = new System.Drawing.Size(143, 127);
             this.gbFiltrosPassaAlta.TabIndex = 36;
@@ -723,7 +725,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1924, 1131);
+            this.ClientSize = new System.Drawing.Size(1924, 1055);
             this.Controls.Add(this.gbFiltrosPassaAlta);
             this.Controls.Add(this.gbOperacoesMorfologicas);
             this.Controls.Add(this.gbFiltrosPassaBaixa);

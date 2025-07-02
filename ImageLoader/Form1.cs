@@ -1550,6 +1550,146 @@ namespace TrabalhoFinal
             // Atualizar a PictureBox com a imagem erodida
             pbImgResultado.Image = imgErosionada;
         }
+        private void btnAbertura_Click(object sender, EventArgs e)
+        {
+            if (img1 == null)
+            {
+                MessageBox.Show("Por favor, carregue uma imagem antes de aplicar o filtro.");
+                return;
+            }
+
+            Bitmap imgBinaria = BinarizarImagem(img1);
+
+            Bitmap imgErosao = AplicarErosao(imgBinaria);
+            Bitmap imgAbertura = AplicarDilatacao(imgErosao);
+
+            pbImgResultado.Image = imgAbertura;
+        }
+        private Bitmap BinarizarImagem(Bitmap imagemOriginal, byte limiar = 128)
+        {
+            int largura = imagemOriginal.Width;
+            int altura = imagemOriginal.Height;
+            Bitmap imagemBinaria = new Bitmap(largura, altura);
+
+            for (int y = 0; y < altura; y++)
+            {
+                for (int x = 0; x < largura; x++)
+                {
+                    Color pixel = imagemOriginal.GetPixel(x, y);
+                    byte intensidade = (byte)((pixel.R + pixel.G + pixel.B) / 3);
+
+                    if (intensidade >= limiar)
+                        imagemBinaria.SetPixel(x, y, Color.White);
+                    else
+                        imagemBinaria.SetPixel(x, y, Color.Black);
+                }
+            }
+
+            return imagemBinaria;
+        }
+        private void btnFechamento_Click(object sender, EventArgs e)
+        {
+            if (img1 == null)
+            {
+                MessageBox.Show("Por favor, carregue uma imagem antes de aplicar o filtro.");
+                return;
+            }
+
+            Bitmap imgBinaria = BinarizarImagem(img1);
+
+            Bitmap imgDilatada = AplicarDilatacao(imgBinaria);
+            Bitmap imgFechamento = AplicarErosao(imgDilatada);
+
+            pbImgResultado.Image = imgFechamento;
+        }
+
+        private Bitmap AplicarErosao(Bitmap imagem)
+        {
+            int largura = imagem.Width;
+            int altura = imagem.Height;
+            Bitmap imagemErosao = new Bitmap(largura, altura);
+
+            int[,] elementoEstruturante = {
+        { 0, 1, 0 },
+        { 1, 1, 1 },
+        { 0, 1, 0 }
+    };
+
+            for (int y = 1; y < altura - 1; y++)
+            {
+                for (int x = 1; x < largura - 1; x++)
+                {
+                    bool erodido = true;
+
+                    for (int ky = -1; ky <= 1; ky++)
+                    {
+                        for (int kx = -1; kx <= 1; kx++)
+                        {
+                            if (elementoEstruturante[ky + 1, kx + 1] == 1)
+                            {
+                                Color pixel = imagem.GetPixel(x + kx, y + ky);
+                                if (pixel.R == 0 && pixel.G == 0 && pixel.B == 0)
+                                {
+                                    erodido = false;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!erodido) break;
+                    }
+
+                    imagemErosao.SetPixel(x, y, erodido ? Color.White : Color.Black);
+                }
+            }
+
+            return imagemErosao;
+        }
+
+        private Bitmap AplicarDilatacao(Bitmap imagem)
+        {
+            int largura = imagem.Width;
+            int altura = imagem.Height;
+            Bitmap imagemDilatada = new Bitmap(largura, altura);
+
+            int[,] elementoEstruturante = {
+        { 0, 1, 0 },
+        { 1, 1, 1 },
+        { 0, 1, 0 }
+    };
+
+            for (int y = 1; y < altura - 1; y++)
+            {
+                for (int x = 1; x < largura - 1; x++)
+                {
+                    bool dilatado = false;
+
+                    for (int ky = -1; ky <= 1; ky++)
+                    {
+                        for (int kx = -1; kx <= 1; kx++)
+                        {
+                            if (elementoEstruturante[ky + 1, kx + 1] == 1)
+                            {
+                                Color pixel = imagem.GetPixel(x + kx, y + ky);
+                                if (pixel.R > 0 || pixel.G > 0 || pixel.B > 0)
+                                {
+                                    dilatado = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (dilatado) break;
+                    }
+
+                    imagemDilatada.SetPixel(x, y, dilatado ? Color.White : Color.Black);
+                }
+            }
+
+            return imagemDilatada;
+        }
+
+
+
+
     }
 }
 
