@@ -87,7 +87,11 @@ namespace TrabalhoFinal
 
         private void ConverterParaCinza()
         {
-            if (img1 == null) return;
+            if (img1 == null)
+            {
+                MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             imgCinza = new Bitmap(img1.Width, img1.Height);
             vImg1Gray = new byte[img1.Width, img1.Height];
@@ -110,7 +114,11 @@ namespace TrabalhoFinal
 
         private void AjustarBrilho(int brilho)
         {
-            if (img1 == null) return;
+            if (img1 == null)
+            {
+                MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             Bitmap imgBrilho = new Bitmap(img1.Width, img1.Height);
 
@@ -141,7 +149,11 @@ namespace TrabalhoFinal
 
         private void SomarImagens()
         {
-            if (img1 == null || img2 == null) return;
+            if (img1 == null || img2 == null)
+            {
+                MessageBox.Show("Carregue ambas as imagens primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             int largura = Math.Min(img1.Width, img2.Width);
             int altura = Math.Min(img1.Height, img2.Height);
@@ -167,7 +179,11 @@ namespace TrabalhoFinal
 
         private void SubtrairImagens()
         {
-            if (img1 == null || img2 == null) return;
+            if (img1 == null || img2 == null)
+            {
+                MessageBox.Show("Carregue ambas as imagens primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             int largura = Math.Min(img1.Width, img2.Width);
             int altura = Math.Min(img1.Height, img2.Height);
@@ -194,7 +210,11 @@ namespace TrabalhoFinal
         //rever a multiplicação e divisão
         private void MultiplicarImagem(float fator)
         {
-            if (img1 == null) return;
+            if (img1 == null || img2 == null)
+            {
+                MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             Bitmap imgResultado = new Bitmap(img1.Width, img1.Height);
 
@@ -230,6 +250,12 @@ namespace TrabalhoFinal
                 return;
             }
 
+            if (img1 == null)
+            {
+                MessageBox.Show("Carregue ambas as imagens primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             Bitmap imgResultado = new Bitmap(img1.Width, img1.Height);
 
             for (int x = 0; x < img1.Width; x++)
@@ -258,7 +284,12 @@ namespace TrabalhoFinal
         private void InverterHorizontalmente()
         {
             Image imagemFonte = pbImgResultado.Image ?? pbImg1.Image;
-            if (imagemFonte == null) return;
+
+            if (img1 == null)
+            {
+                MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             Bitmap imgAtual = new Bitmap(imagemFonte);
             Bitmap imgInvertida = new Bitmap(imgAtual.Width, imgAtual.Height);
@@ -278,7 +309,12 @@ namespace TrabalhoFinal
         private void InverterVerticalmente()
         {
             Image imagemFonte = pbImgResultado.Image ?? pbImg1.Image;
-            if (imagemFonte == null) return;
+           
+            if (img1 == null)
+            {
+                MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             Bitmap imgAtual = new Bitmap(imagemFonte);
             Bitmap imgInvertida = new Bitmap(imgAtual.Width, imgAtual.Height);
@@ -297,8 +333,11 @@ namespace TrabalhoFinal
 
         private void DiferencaEntreImagens()
         {
-            if (img1 == null || img2 == null) return;
-
+            if (img1 == null)
+            {
+                MessageBox.Show("Carregue ambas as imagens primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             int largura = Math.Min(img1.Width, img2.Width);
             int altura = Math.Min(img1.Height, img2.Height);
             Bitmap imgResultado = new Bitmap(largura, altura);
@@ -321,51 +360,6 @@ namespace TrabalhoFinal
 
             pbImgResultado.Image = imgResultado;
         }
-
-        private void ConverterParaBinario()
-        {
-            if (img1 == null)
-            {
-                MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            Bitmap imgBinaria = new Bitmap(img1.Width, img1.Height);
-            const byte limiar = 128; // Limiar fixo (0-255)
-
-            if (isGrayScale && vImg1Gray != null)
-            {
-                // Caso 1: Imagem já está em escala de cinza (usa a matriz de bytes)
-                for (int x = 0; x < img1.Width; x++)
-                {
-                    for (int y = 0; y < img1.Height; y++)
-                    {
-                        byte intensidade = vImg1Gray[x, y];
-                        imgBinaria.SetPixel(x, y, intensidade >= limiar ? Color.White : Color.Black);
-                    }
-                }
-            }
-            else
-            {
-                // Caso 2: Imagem RGB (converte para byte e aplica limiar)
-                for (int x = 0; x < img1.Width; x++)
-                {
-                    for (int y = 0; y < img1.Height; y++)
-                    {
-                        Color pixel = img1.GetPixel(x, y);
-                        // Converte RGB para byte (média simples)
-                        byte intensidade = (byte)((pixel.R + pixel.G + pixel.B) / 3);
-                        imgBinaria.SetPixel(x, y, intensidade >= limiar ? Color.White : Color.Black);
-                    }
-                }
-            }
-
-            pbImgResultado.Image = imgBinaria;
-            isGrayScale = true; // Atualiza o flag para binário (tons de cinza)
-        }
-
-        
-
 
         private void SalvarImagem()
         {
@@ -412,7 +406,7 @@ namespace TrabalhoFinal
         {
             if (img1 == null || img2 == null)
             {
-                MessageBox.Show("Nenhuma imagem carregada!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Carregue ambas as imagens primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             else
@@ -431,7 +425,7 @@ namespace TrabalhoFinal
             }
             else
             {
-                MessageBox.Show("Nenhuma imagem carregada!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -451,7 +445,7 @@ namespace TrabalhoFinal
             }
             else
             {
-                MessageBox.Show("Nenhuma imagem carregada!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -543,7 +537,7 @@ namespace TrabalhoFinal
             // Verifica se as imagens foram carregadas
             if (img1 == null || img2 == null)
             {
-                MessageBox.Show("Carregue ambas as imagens!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Carregue ambas as imagens primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -582,7 +576,7 @@ namespace TrabalhoFinal
             // Verifica se as imagens foram carregadas
             if (img1 == null || img2 == null)
             {
-                MessageBox.Show("Carregue ambas as imagens!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Carregue ambas as imagens primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -621,7 +615,7 @@ namespace TrabalhoFinal
             // Verifica se as imagens foram carregadas
             if (img1 == null || img2 == null)
             {
-                MessageBox.Show("Carregue ambas as imagens!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Carregue ambas as imagens primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -660,7 +654,7 @@ namespace TrabalhoFinal
             // Verifica se a imagem foi carregada
             if (img1 == null)
             {
-                MessageBox.Show("Carregue a imagem!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -687,6 +681,12 @@ namespace TrabalhoFinal
 
         private void btnHistograma_Click(object sender, EventArgs e)
         {
+
+            if (img1 == null)
+            {
+                MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             if (img1 != null)
             {
@@ -810,14 +810,7 @@ namespace TrabalhoFinal
         {
             InverterVerticalmente();
         }
-
-        private void btnConverterBinario_Click(object sender, EventArgs e)
-        {
-            ConverterParaBinario();
-        }
-
       
-
         private void btnLimiarizacao_Click(object sender, EventArgs e)
         {
             if (img1 == null)
@@ -859,6 +852,13 @@ namespace TrabalhoFinal
 
         private void btnMaximo_Click(object sender, EventArgs e)
         {
+
+            if (img1 == null)
+            {
+                MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (img1 != null)
             {
                 int largura = img1.Width;
@@ -904,6 +904,13 @@ namespace TrabalhoFinal
 
         private void btnMaximo_Click_1(object sender, EventArgs e)
         {
+
+            if (img1 == null)
+            {
+                MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (img1 != null)
             {
                 int largura = img1.Width;
@@ -949,6 +956,13 @@ namespace TrabalhoFinal
 
         private void btnMean_Click(object sender, EventArgs e)
         {
+
+            if (img1 == null)
+            {
+                MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (img1 != null)
             {
                 int largura = img1.Width;
@@ -1034,7 +1048,7 @@ namespace TrabalhoFinal
                 }
                 else
                 {
-                    MessageBox.Show("Por favor, carregue uma imagem antes de aplicar o filtro.");
+                    MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -1085,7 +1099,7 @@ namespace TrabalhoFinal
             }
             else
             {
-                MessageBox.Show("Por favor, carregue uma imagem antes de aplicar o filtro.");
+                MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -1146,7 +1160,7 @@ namespace TrabalhoFinal
             }
             else
             {
-                MessageBox.Show("Por favor, carregue uma imagem antes de aplicar o filtro.");
+                MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
         }
@@ -1155,7 +1169,7 @@ namespace TrabalhoFinal
         {
             if (img1 == null)
             {
-                MessageBox.Show("Por favor, carregue uma imagem antes de aplicar o filtro.");
+                MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -1263,7 +1277,7 @@ namespace TrabalhoFinal
             {
                 if (img1 == null)
                 {
-                    MessageBox.Show("Carregue uma imagem antes de aplicar o filtro.");
+                    MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -1322,7 +1336,7 @@ namespace TrabalhoFinal
         {
             if (img1 == null)
             {
-                MessageBox.Show("Carregue uma imagem antes de aplicar o filtro.");
+                MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -1379,7 +1393,7 @@ namespace TrabalhoFinal
         {
             if (img1 == null)
             {
-                MessageBox.Show("Carregue uma imagem antes de aplicar o filtro.");
+                MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -1436,7 +1450,7 @@ namespace TrabalhoFinal
         {
             if (img1 == null)
             {
-                MessageBox.Show("Por favor, carregue uma imagem antes de aplicar o filtro.");
+                MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -1492,7 +1506,7 @@ namespace TrabalhoFinal
         {
             if (img1 == null)
             {
-                MessageBox.Show("Por favor, carregue uma imagem antes de aplicar o filtro.");
+                MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -1554,7 +1568,7 @@ namespace TrabalhoFinal
         {
             if (img1 == null)
             {
-                MessageBox.Show("Por favor, carregue uma imagem antes de aplicar o filtro.");
+                MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -1591,7 +1605,7 @@ namespace TrabalhoFinal
         {
             if (img1 == null)
             {
-                MessageBox.Show("Por favor, carregue uma imagem antes de aplicar o filtro.");
+                MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -1605,15 +1619,20 @@ namespace TrabalhoFinal
 
         private Bitmap AplicarErosao(Bitmap imagem)
         {
+            if (img1 == null)
+            {
+                MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
             int largura = imagem.Width;
             int altura = imagem.Height;
             Bitmap imagemErosao = new Bitmap(largura, altura);
 
             int[,] elementoEstruturante = {
-        { 0, 1, 0 },
-        { 1, 1, 1 },
-        { 0, 1, 0 }
-    };
+                      { 0, 1, 0 },
+                      { 1, 1, 1 },
+                      { 0, 1, 0 }
+            };
 
             for (int y = 1; y < altura - 1; y++)
             {
@@ -1647,15 +1666,20 @@ namespace TrabalhoFinal
 
         private Bitmap AplicarDilatacao(Bitmap imagem)
         {
+            if (img1 == null)
+            {
+                MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
             int largura = imagem.Width;
             int altura = imagem.Height;
             Bitmap imagemDilatada = new Bitmap(largura, altura);
 
             int[,] elementoEstruturante = {
-        { 0, 1, 0 },
-        { 1, 1, 1 },
-        { 0, 1, 0 }
-    };
+                       { 0, 1, 0 },
+                       { 1, 1, 1 },
+                       { 0, 1, 0 }
+            };
 
             for (int y = 1; y < altura - 1; y++)
             {
@@ -1691,8 +1715,9 @@ namespace TrabalhoFinal
         {
             if (img1 == null)
             {
-                MessageBox.Show("Por favor, carregue uma imagem antes de aplicar o filtro.");
-                return;
+                MessageBox.Show("Carregue uma imagem primeiro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // <- isso impede que o código continue se img1 for null
+
             }
 
             // Binariza a imagem original
@@ -1724,6 +1749,15 @@ namespace TrabalhoFinal
             pbImgResultado.Image = imgContorno;
         }
 
+        private void numUpDownOrdem_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gbOperacoesMorfologicas_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
