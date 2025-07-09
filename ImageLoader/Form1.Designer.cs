@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea23 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend23 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series23 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea24 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend24 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series24 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.btnImg1 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.pbImg1 = new System.Windows.Forms.PictureBox();
@@ -69,12 +69,11 @@
             this.gbOperacoesLogicas = new System.Windows.Forms.GroupBox();
             this.gbFiltrosPassaBaixa = new System.Windows.Forms.GroupBox();
             this.txtGaussiano = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.numUpDownOrdem = new System.Windows.Forms.NumericUpDown();
             this.txtOrdem = new System.Windows.Forms.TextBox();
-            this.btnGaussiano = new System.Windows.Forms.Button();
             this.btnSuavizacaoConservativa = new System.Windows.Forms.Button();
             this.btnOrdem = new System.Windows.Forms.Button();
+            this.btnGaussiano = new System.Windows.Forms.Button();
             this.btnMediana = new System.Windows.Forms.Button();
             this.btnMean = new System.Windows.Forms.Button();
             this.btnMaximo = new System.Windows.Forms.Button();
@@ -398,32 +397,32 @@
             // 
             // chart1
             // 
-            chartArea23.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea23);
-            legend23.Name = "Legend1";
-            this.chart1.Legends.Add(legend23);
+            chartArea5.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            this.chart1.Legends.Add(legend5);
             this.chart1.Location = new System.Drawing.Point(38, 29);
             this.chart1.Name = "chart1";
-            series23.ChartArea = "ChartArea1";
-            series23.Legend = "Legend1";
-            series23.Name = "Series1";
-            this.chart1.Series.Add(series23);
+            series5.ChartArea = "ChartArea1";
+            series5.Legend = "Legend1";
+            series5.Name = "Series1";
+            this.chart1.Series.Add(series5);
             this.chart1.Size = new System.Drawing.Size(654, 300);
             this.chart1.TabIndex = 27;
             this.chart1.Text = "chart1";
             // 
             // chart2
             // 
-            chartArea24.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea24);
-            legend24.Name = "Legend1";
-            this.chart2.Legends.Add(legend24);
+            chartArea6.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea6);
+            legend6.Name = "Legend1";
+            this.chart2.Legends.Add(legend6);
             this.chart2.Location = new System.Drawing.Point(1357, 29);
             this.chart2.Name = "chart2";
-            series24.ChartArea = "ChartArea1";
-            series24.Legend = "Legend1";
-            series24.Name = "Series1";
-            this.chart2.Series.Add(series24);
+            series6.ChartArea = "ChartArea1";
+            series6.Legend = "Legend1";
+            series6.Name = "Series1";
+            this.chart2.Series.Add(series6);
             this.chart2.Size = new System.Drawing.Size(646, 300);
             this.chart2.TabIndex = 28;
             this.chart2.Text = "chart2";
@@ -485,7 +484,6 @@
             // 
             this.gbFiltrosPassaBaixa.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.gbFiltrosPassaBaixa.Controls.Add(this.txtGaussiano);
-            this.gbFiltrosPassaBaixa.Controls.Add(this.comboBox1);
             this.gbFiltrosPassaBaixa.Controls.Add(this.numUpDownOrdem);
             this.gbFiltrosPassaBaixa.Controls.Add(this.txtOrdem);
             this.gbFiltrosPassaBaixa.Controls.Add(this.btnSuavizacaoConservativa);
@@ -505,22 +503,10 @@
             // 
             // txtGaussiano
             // 
-            this.txtGaussiano.Location = new System.Drawing.Point(17, 207);
+            this.txtGaussiano.Location = new System.Drawing.Point(17, 236);
             this.txtGaussiano.Name = "txtGaussiano";
             this.txtGaussiano.Size = new System.Drawing.Size(58, 22);
             this.txtGaussiano.TabIndex = 35;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "3X3",
-            "5x5",
-            "7x7"});
-            this.comboBox1.Location = new System.Drawing.Point(17, 60);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(58, 24);
-            this.comboBox1.TabIndex = 34;
             // 
             // numUpDownOrdem
             // 
@@ -537,20 +523,10 @@
             // 
             // txtOrdem
             // 
-            this.txtOrdem.Location = new System.Drawing.Point(17, 173);
+            this.txtOrdem.Location = new System.Drawing.Point(17, 202);
             this.txtOrdem.Name = "txtOrdem";
             this.txtOrdem.Size = new System.Drawing.Size(58, 22);
             this.txtOrdem.TabIndex = 34;
-            // 
-            // btnGaussiano
-            // 
-            this.btnGaussiano.Location = new System.Drawing.Point(99, 233);
-            this.btnGaussiano.Name = "btnGaussiano";
-            this.btnGaussiano.Size = new System.Drawing.Size(137, 28);
-            this.btnGaussiano.TabIndex = 6;
-            this.btnGaussiano.Text = "Gaussiano";
-            this.btnGaussiano.UseVisualStyleBackColor = true;
-            this.btnGaussiano.Click += new System.EventHandler(this.btnGaussiano_Click);
             // 
             // btnSuavizacaoConservativa
             // 
@@ -571,6 +547,16 @@
             this.btnOrdem.Text = "Ordem";
             this.btnOrdem.UseVisualStyleBackColor = true;
             this.btnOrdem.Click += new System.EventHandler(this.btnOrdem_Click);
+            // 
+            // btnGaussiano
+            // 
+            this.btnGaussiano.Location = new System.Drawing.Point(99, 233);
+            this.btnGaussiano.Name = "btnGaussiano";
+            this.btnGaussiano.Size = new System.Drawing.Size(137, 28);
+            this.btnGaussiano.TabIndex = 6;
+            this.btnGaussiano.Text = "Gaussiano";
+            this.btnGaussiano.UseVisualStyleBackColor = true;
+            this.btnGaussiano.Click += new System.EventHandler(this.btnGaussiano_Click);
             // 
             // btnMediana
             // 
@@ -752,7 +738,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.SystemColors.Menu;
             this.ClientSize = new System.Drawing.Size(1924, 1081);
             this.Controls.Add(this.gbConversõesInversões);
             this.Controls.Add(this.gb);
@@ -837,7 +823,6 @@
         private System.Windows.Forms.Button btnMean;
         private System.Windows.Forms.Button btnMaximo;
         private System.Windows.Forms.Button btnMinimo;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.NumericUpDown numUpDownOrdem;
         private System.Windows.Forms.TextBox txtOrdem;
         private System.Windows.Forms.TextBox txtGaussiano;

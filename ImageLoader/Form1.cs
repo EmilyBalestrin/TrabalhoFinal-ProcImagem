@@ -1180,9 +1180,9 @@ namespace TrabalhoFinal
             }
 
             // Obter o valor de sigma da TextBox
-            if (!double.TryParse(txtGaussiano.Text, out double sigma) || sigma <= 0)
+            if (!double.TryParse(txtGaussiano.Text, out double sigma) || sigma <= 0 || sigma > 2)
             {
-                MessageBox.Show("Por favor, insira um valor válido para sigma.");
+                MessageBox.Show("Por favor, insira um valor válido para sigma (entre 0.1 e 2.0).");
                 return;
             }
 
